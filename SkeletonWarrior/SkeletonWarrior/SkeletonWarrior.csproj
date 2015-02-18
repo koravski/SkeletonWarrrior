@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23746EDC-F17A-47C6-B347-A938E9B5A3D6}</ProjectGuid>
+    <ProjectGuid>{14B5A863-42CE-4BF3-AE6C-10B8A6055837}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SkeletonWarrior</RootNamespace>
@@ -41,7 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="GameLogic.cs" />
+    <Compile Include="Menu.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="SWMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
