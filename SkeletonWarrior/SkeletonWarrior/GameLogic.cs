@@ -59,7 +59,7 @@ namespace SkeletonWarrior
             SetCursorPosition(36, 1);
             Console.WriteLine("Press \"4\" for More Lives");
 
-            //player choice
+            //player choise
             bool commandCorrenct = false;
             while (!commandCorrenct)
             {
