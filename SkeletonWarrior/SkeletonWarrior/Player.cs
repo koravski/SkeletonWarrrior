@@ -16,6 +16,7 @@ namespace SkeletonWarrior
         private string playerModel;
         private int x;
         private int y;
+        public static ConsoleColor playerColor = ConsoleColor.Blue;
 
         public Player(int x, int y, int movementSpeed, int attackPower, int firingSpeed, int playerLevel, int health)
         {

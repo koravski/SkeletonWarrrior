@@ -37,23 +37,32 @@ namespace SkeletonWarrior
         {
             get { return this.direction; }
         }
-        public bool BulletCollision()
+        public bool BulletCollisionCheck()
         {
-            bool isColliding = false;
-
-
-
-            return isColliding;
+            foreach (var enemy in GameLogic.EnemyList)
+            {
+                if ( (this.x == enemy.X - 1) &&
+                     (this.y == enemy.Y) )
+                {
+                    int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
+                    GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                    GameLogic.EnemyList.RemoveAt(GameLogic.EnemyList.IndexOf(enemy));
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void WriteBulletOnScreen()
         {
+            ConsoleColor background = Console.BackgroundColor;
+            Console.ForegroundColor = Player.playerColor;
             Console.SetCursorPosition(this.x + 1, this.y);
             Console.Write(bulletModel);
+            Console.ForegroundColor = background;
         }
         public void UpdateBullet()
         {
-            int indexOfBullet;
             bool forRemoval = false;
 
             if ((this.y < 1) ||
@@ -82,7 +91,7 @@ namespace SkeletonWarrior
 	        }
             if (forRemoval)
             {
-                indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
+                int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
                 GameLogic.ShotBullets.RemoveAt(indexOfBullet);
             }
         }

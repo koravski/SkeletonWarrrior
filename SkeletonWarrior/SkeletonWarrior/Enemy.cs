@@ -14,6 +14,7 @@ namespace SkeletonWarrior
         private int enemyLevel;
         private int health;
         private char enemyType;
+        private ConsoleColor enemyColor = ConsoleColor.Red;
 
         public Enemy(int movementSpeed, int attackPower, int firingSpeed, int enemyLevel, int health, char enemyType)
         {
@@ -32,6 +33,16 @@ namespace SkeletonWarrior
             this.y = coordsPicker.Next(1, Console.WindowHeight - 1);
         }
 
+        public int X
+        {
+            get { return x; }
+            set { this.x = value; }
+        }
+        public int Y
+        {
+            get { return y; }
+            set { this.y = value; }
+        }
         public int MovementSpeed
         {
             get { return movementSpeed; }
@@ -69,8 +80,11 @@ namespace SkeletonWarrior
 
         public void WriteEnemyOnScreen()
         {
+            ConsoleColor foreground = Console.BackgroundColor;
+            Console.ForegroundColor =  enemyColor;
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(EnemyType);
+            Console.ForegroundColor = foreground;
         }
 
         public void Move()

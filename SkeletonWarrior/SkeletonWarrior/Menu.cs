@@ -30,20 +30,44 @@ namespace SkeletonWarrior
             while(playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
+                ConsoleColor background = Console.ForegroundColor;
+                Console.ForegroundColor = Player.playerColor;
                 Console.Write(player.PlayerModel);
+                Console.ForegroundColor = background;
                 player.MoveAndShoot();
                 player.ShootAndMoveBullets();
 
-                if (enemySpawner.Next(1, 101) < 5)
+                int determiner = enemySpawner.Next(1, 250);
+
+                if (determiner == 1)
                 {
                     GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '0'));
+                }
+                else if (determiner == 2)
+                {
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '*'));
+                }
+                else if (determiner == 3)
+                {
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '='));
+                }
+                else if (determiner == 4)
+                {
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
                 }
                 foreach (var enemy in GameLogic.EnemyList)
                 {
                     enemy.WriteEnemyOnScreen();
                 }
+                foreach (var bullet in GameLogic.ShotBullets)
+                {
+                    if (bullet.BulletCollisionCheck())
+                    {
+                        break;
+                    }
+                }
 
-                Thread.Sleep(30);
+                Thread.Sleep(20);
                 Console.Clear();
             }
         }
