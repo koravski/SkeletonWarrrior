@@ -1,10 +1,13 @@
 ﻿//A class for the enemies
 using System;
+using System.Collections.Generic;
 
 namespace SkeletonWarrior
 {
     class Enemy
     {
+        private int x;
+        private int y;
         private int movementSpeed;
         private int attackPower;
         private int firingSpeed;
@@ -20,6 +23,13 @@ namespace SkeletonWarrior
             this.enemyLevel = enemyLevel;
             this.health = health;
             this.enemyType = enemyType;
+            PickEnemyCoords();
+        }
+        private void PickEnemyCoords()
+        {
+            Random coordsPicker = new Random();
+            this.x = coordsPicker.Next(1, Console.WindowWidth - 1);
+            this.y = coordsPicker.Next(1, Console.WindowHeight - 1);
         }
 
         public int MovementSpeed
@@ -55,6 +65,12 @@ namespace SkeletonWarrior
         public static void SetEnemyColorOnLevelUp()
         {
             //Runs when enemy levels up and makes him darker (or the lightest color).
+        }
+
+        public void WriteEnemyOnScreen()
+        {
+            Console.SetCursorPosition(this.x, this.y);
+            Console.Write(EnemyType);
         }
 
         public void Move()

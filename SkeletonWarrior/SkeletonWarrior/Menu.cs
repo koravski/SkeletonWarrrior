@@ -11,6 +11,7 @@ namespace SkeletonWarrior
         private static int menuSelected = 0;
         private static string characterName;
         private static bool playing = true;
+        private static Random enemySpawner = new Random();
 
         public static void Show()
         {
@@ -25,14 +26,24 @@ namespace SkeletonWarrior
             Console.Clear();
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
-            player.PlayerModel = "-.☺.-";
+            player.PlayerModel = "=-.☺.-=";
             while(playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
                 Console.Write(player.PlayerModel);
                 player.MoveAndShoot();
-                player.HandleBullets();
-                Thread.Sleep(10);
+                player.ShootAndMoveBullets();
+
+                if (enemySpawner.Next(1, 101) < 5)
+                {
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '0'));
+                }
+                foreach (var enemy in GameLogic.EnemyList)
+                {
+                    enemy.WriteEnemyOnScreen();
+                }
+
+                Thread.Sleep(30);
                 Console.Clear();
             }
         }

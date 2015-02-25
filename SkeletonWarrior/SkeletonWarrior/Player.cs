@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using System.Linq;
 
 namespace SkeletonWarrior
 {
@@ -15,9 +16,6 @@ namespace SkeletonWarrior
         private string playerModel;
         private int x;
         private int y;
-        private ConsoleColor playerColor = ConsoleColor.Cyan;
-        private static List<Bullet> shotBullets = new List<Bullet>();
-        private int currentBulletID = 0;
 
         public Player(int x, int y, int movementSpeed, int attackPower, int firingSpeed, int playerLevel, int health)
         {
@@ -70,16 +68,6 @@ namespace SkeletonWarrior
             get { return this.playerModel; }
             set { this.playerModel = value; }
         }
-        public ConsoleColor PlayerColor
-        {
-            get { return this.playerColor; }
-            set { this.playerColor = value; }
-        }
-        public static List<Bullet> ShotBullets
-        {
-            get { return shotBullets; }
-            set { shotBullets = value; }
-        }
 
         public void MoveAndShoot()
         {
@@ -102,20 +90,28 @@ namespace SkeletonWarrior
                         this.x += this.movementSpeed;
                         break;
                     case ConsoleKey.UpArrow:
-                        ShotBullets.Add(new Bullet(x, y - 1, 1, currentBulletID));
-                        currentBulletID++;
-                        break;
-                    case ConsoleKey.DownArrow:
-                        ShotBullets.Add(new Bullet(x, y + 1, 2, currentBulletID));
-                        currentBulletID++;
-                        break;
+                        if (y > 0)
+                        {
+                            GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1));
+                        }
+                        break;                     
+                    case ConsoleKey.DownArrow:     
+                        if (y < Console.WindowHeight - 1)
+                        {
+                            GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2));
+                        }         
+                        break;                     
                     case ConsoleKey.RightArrow:
-                        ShotBullets.Add(new Bullet(x + 1, y, 4, currentBulletID));
-                        currentBulletID++;
-                        break;
+                        if (x < Console.WindowWidth - 4)
+                        {
+                            GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4));
+                        }                           
+                        break;                     
                     case ConsoleKey.LeftArrow:
-                        ShotBullets.Add(new Bullet(x - 1, y, 3, currentBulletID));
-                        currentBulletID++;
+                        if (x > 2)
+                        {
+                            GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3)); 
+                        }                       
                         break;
                     default:  
                         break;
@@ -124,9 +120,9 @@ namespace SkeletonWarrior
             }
         }
 
-        public void HandleBullets()
+        public void ShootAndMoveBullets()
         {
-            foreach (var element in ShotBullets)
+            foreach (var element in GameLogic.ShotBullets.ToList())
             {
                 element.WriteBulletOnScreen();
                 element.UpdateBullet();

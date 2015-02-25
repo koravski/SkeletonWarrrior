@@ -9,19 +9,18 @@ namespace SkeletonWarrior
         private int y;
         private int direction;
         private char bulletModel = '@';
-        private int bulletID;
+        private int indexOfBullet;
         //directions:
         // 1 - up
         // 2 - down
         // 3 - left
         // 4 - right
 
-        public Bullet(int x, int y, int direction, int bulletID)
+        public Bullet(int x, int y, int direction)
         {
             this.x = x;
             this.y = y;
             this.direction = direction;
-            this.bulletID = bulletID;
         }
 
         public int X
@@ -38,11 +37,6 @@ namespace SkeletonWarrior
         {
             get { return this.direction; }
         }
-        public int BulletID
-        {
-            get { return bulletID; }
-        }
-
         public bool BulletCollision()
         {
             bool isColliding = false;
@@ -51,36 +45,46 @@ namespace SkeletonWarrior
 
             return isColliding;
         }
+
         public void WriteBulletOnScreen()
         {
-            Console.SetCursorPosition(this.x, this.y);
+            Console.SetCursorPosition(this.x + 1, this.y);
             Console.Write(bulletModel);
         }
         public void UpdateBullet()
         {
-            if ( direction == 1 )
-	        {
-                if ( this.y < 1 )
-                {
-                    Player.ShotBullets.RemoveAt(this.bulletID);
-                }
-                else
-                {
-                    this.y--;
-                }
-	        }
-            else if (direction == 2)
+            int indexOfBullet;
+            bool forRemoval = false;
+
+            if ((this.y < 1) ||
+                (this.y > Console.WindowHeight - 2) ||
+                (this.x < 1) ||
+                (this.x >= Console.WindowWidth - 2))
             {
-		        this.y++;
+                forRemoval = true;
             }
-            else if (direction == 3)
+
+            if ( direction == 1 ) // if bullet is going up
 	        {
-		        this.x--;
+                this.y--;
 	        }
-            else if (true)
+            else if (direction == 2) // if bullet is going down
+            {
+                this.y++;
+            }
+            else if (direction == 3) // if bullet is going left
 	        {
-		        this.x++;
+                this.x--;
 	        }
+            else // if bullet is going right
+	        {
+                this.x++;
+	        }
+            if (forRemoval)
+            {
+                indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
+                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+            }
         }
     }
 }
