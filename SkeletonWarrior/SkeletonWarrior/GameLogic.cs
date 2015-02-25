@@ -41,37 +41,39 @@ namespace SkeletonWarrior
             Enemy.SetEnemyColorOnLevelUp();
         }
 
-        public void LevelUpPlayer()
+        public static void LevelUpPlayer()
         {
             //Runs when the player kills enough enemies that he levels up. 
-
+            ConsoleColor foreground = Console.ForegroundColor;
             //menu
-            SetCursorPosition(0, 0);
-            Console.Write("You raised level!");
-            SetCursorPosition(18, 0);
-            Console.WriteLine("Choose from menu: ");
-            SetCursorPosition(36, 0);
-            Console.WriteLine("Press \"1\" for movement Speed,");
-            SetCursorPosition(66, 0);
-            Console.WriteLine("\"2\" for attack Power");
-            SetCursorPosition(88, 0);
-            Console.WriteLine("Press \"3\" for Firing Speed");
-            SetCursorPosition(36, 1);
-            Console.WriteLine("Press \"4\" for More Lives");
+            SetCursorPosition(1, 1);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Level UP!");
+            SetCursorPosition(1, 2);
+            Console.WriteLine("Pick ability: ");
+            SetCursorPosition(1, 3);
+            Console.WriteLine("1. Movement Speed");
+            SetCursorPosition(1, 4);
+            Console.WriteLine("2. Attack Power");
+            SetCursorPosition(1, 5);
+            Console.WriteLine("3. Firing Speed");
+            SetCursorPosition(1, 6);
+            Console.WriteLine("4. Lives");
+            Console.ForegroundColor = foreground;
 
-            //player choise
-            bool commandCorrenct = false;
-            while (!commandCorrenct)
+            //player choice
+            bool commandCorrect = false;
+            while (!commandCorrect)
             {
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey(true);
                     switch (key.Key)
                     {
-                        case ConsoleKey.D1: commandCorrenct = true; break;   // Do sonething 
-                        case ConsoleKey.D2: commandCorrenct = true; break;   // Do sonething 
-                        case ConsoleKey.D3: commandCorrenct = true; break;   // Do sonething 
-                        case ConsoleKey.D4: commandCorrenct = true; break;   // Do sonething 
+                        case ConsoleKey.D1: commandCorrect = true; break;   // Do something 
+                        case ConsoleKey.D2: commandCorrect = true; break;   // Do something 
+                        case ConsoleKey.D3: commandCorrect = true; break;   // Do something 
+                        case ConsoleKey.D4: commandCorrect = true; break;   // Do something 
                         default: break;
                     }
                 }
