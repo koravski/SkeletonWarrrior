@@ -85,7 +85,7 @@ namespace SkeletonWarrior
 	        {
                 this.x--;
 	        }
-            else // if bullet is going right
+            else if (direction == 4)// if bullet is going right
 	        {
                 this.x++;
 	        }

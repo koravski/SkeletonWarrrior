@@ -87,9 +87,16 @@ namespace SkeletonWarrior
             get { return bossFile; }
         }
 
-        public static void SetEnemyColorOnLevelUp()
+        public static void SetEnemyColorOnLevelUp()//int level)
         {
-            //Runs when enemy levels up and makes him darker (or the lightest color).
+           //if(level == 1)
+           //{
+           //    Console.ForegroundColor = ConsoleColor.Magenta;
+           //}
+           // else if(level == 2)
+           //{
+           //    Console.ForegroundColor = ConsoleColor.Green;
+           //}
         }
 
         public void WriteEnemyOnScreen()
@@ -101,18 +108,29 @@ namespace SkeletonWarrior
             Console.ForegroundColor = foreground;
         }
 
-        public void Move()
+        public void Move(Player player)
         {
+            if (this.X > player.X)
+            {
+                this.X--;
+            }
+            else if (this.X < player.X)
+            {
+                this.X++;
+            }
+            if (this.Y > player.Y)
+            {
+                this.Y--;
+            }
+            else if (this.Y < player.Y)
+            {
+                this.Y++;
+            }
         }
 
-        public void Shoot()
+        public void Shoot(Player player)
         {
-
-        }
-
-        public void Chase()
-        {
-
+            
         }
 
         public static void GetBoss(string bossFile)

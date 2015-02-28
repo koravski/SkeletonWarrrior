@@ -18,7 +18,13 @@ namespace SkeletonWarrior
         private static bool playing = true;
         private static Random enemySpawner = new Random();
         private static string selector = ">";
+        private static int mover = 0;
 
+        public static int Mover
+        {
+            get { return mover; }
+            set { mover = value; }
+        }
         public static void Show()
         {
             while (true)
@@ -68,9 +74,31 @@ namespace SkeletonWarrior
                 {
                     GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
                 }
+
+                if (GameLogic.EnemyList.Count > 0)
+                {
+                    mover++;
+                }
+                bool moving = false;
                 foreach (var enemy in GameLogic.EnemyList)
                 {
                     enemy.WriteEnemyOnScreen();
+                    if (mover == 11)
+                    {
+                        if (enemy.EnemyType != '*')
+                        {
+                            enemy.Move(player);
+                        }
+                        else
+                        {
+                            enemy.Shoot(player);
+                        }
+                        moving = true;
+                    }
+                }
+                if (moving)
+                {
+                    mover = 0;
                 }
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
@@ -176,39 +204,8 @@ namespace SkeletonWarrior
         private static void ShowLeaderboards()
         {
             Console.Clear();
-            int counter = 0;
-            string line;
-
-            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
-            Console.WriteLine("Failed Attempts:");
-            var reader = new StreamReader(@"..\..\file.txt");
-            int failedCount = 1;
-            while ((line = reader.ReadLine()) != null)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
-                Console.WriteLine(failedCount + ". " + line);
-                counter++;
-                failedCount++;
-            }
-            reader.Close();
-            failedCount = 0;
-            Console.ResetColor();
-
-            int counter1 = 0;
-            string line1;
-            Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
-            Console.WriteLine("Successful Attempts:");
-            var reader1 = new StreamReader(@"..\..\file.txt");
-            int successCount = 1;
-            while ((line1 = reader1.ReadLine()) != null)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
-                Console.WriteLine(successCount + ". " + line1);
-                counter1++;
-                successCount++;
-            }
-            reader.Close();
-            successCount = 0;
+            //TODO: show leaders board;
+            Console.WriteLine("Leaders:");
             
             Console.ReadKey();
             BackToMenu();

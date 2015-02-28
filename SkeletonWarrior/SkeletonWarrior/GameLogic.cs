@@ -71,10 +71,18 @@ namespace SkeletonWarrior
                     ConsoleKeyInfo key = Console.ReadKey(true);
                     switch (key.Key)
                     {
-                        case ConsoleKey.D1: commandCorrect = true; break;   // Do something 
-                        case ConsoleKey.D2: commandCorrect = true; break;   // Do something 
-                        case ConsoleKey.D3: commandCorrect = true; break;   // Do something 
-                        case ConsoleKey.D4: commandCorrect = true; break;   // Do something 
+                        case ConsoleKey.D1: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D2: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D3: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D4: 
+                            commandCorrect = true; 
+                            break;   // Do something 
                         default: break;
                     }
                 }
