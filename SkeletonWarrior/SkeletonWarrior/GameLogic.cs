@@ -6,7 +6,8 @@ namespace SkeletonWarrior
 {
     class GameLogic
     {
-
+        static int enemiesKilled = 0;
+        static int lifes = 0;
         private static List<Enemy> enemyList = new List<Enemy>();
         private static List<Bullet> shotBullets = new List<Bullet>();
 
@@ -78,6 +79,7 @@ namespace SkeletonWarrior
                         default: break;
                     }
                 }
+
             }
         }
         public static void SetCursorPosition(int x, int y)
@@ -88,6 +90,15 @@ namespace SkeletonWarrior
         public void SetBackgroundColorOnLevelChange()
         {
             //Runs when background has to change and makes it darker.
+        }
+
+        
+        public static void PrintResultAndLife()
+        {
+            
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 1, 0);
+            Console.WriteLine("Lifes: {0} / Killed enemies: {1}", lifes, enemiesKilled );
+
         }
     }
 }

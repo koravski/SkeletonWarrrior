@@ -45,6 +45,8 @@ namespace SkeletonWarrior
                 player.MoveAndShoot();
                 player.ShootAndMoveBullets();
 
+                GameLogic.PrintResultAndLife();
+               
                 int determiner = enemySpawner.Next(1, 250);
 
                 if (determiner == 1)
