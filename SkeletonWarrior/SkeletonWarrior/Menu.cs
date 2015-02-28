@@ -17,6 +17,7 @@ namespace SkeletonWarrior
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
+        private static int mover = 0;
 
         public static void Show()
         {
@@ -33,6 +34,7 @@ namespace SkeletonWarrior
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
             player.PlayerModel = "=-.☺.-=";
+           
             while (playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
@@ -61,10 +63,7 @@ namespace SkeletonWarrior
                 {
                     GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
                 }
-                foreach (var enemy in GameLogic.EnemyList)
-                {
-                    enemy.WriteEnemyOnScreen();
-                }
+                EnemyBehavior(player);
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
                     if (bullet.BulletCollisionCheck())
@@ -72,10 +71,25 @@ namespace SkeletonWarrior
                         break;
                     }
                 }
-
-                //Enemy.GetBoss(Enemy.GetBossFile);
                 Thread.Sleep(20);
                 Console.Clear();
+            }
+        }
+
+        public static void EnemyBehavior(Player player)
+        {
+            mover++;
+            foreach (var enemy in GameLogic.EnemyList)
+            {
+                enemy.WriteEnemyOnScreen();
+            }
+            if (mover == 5)
+            {
+                foreach (var enemy in GameLogic.EnemyList)
+                {
+                    enemy.Move(player.X, player.Y);
+                }
+                mover = 0;
             }
         }
 
