@@ -8,6 +8,7 @@ namespace SkeletonWarrior
 {
     class Player
     {
+        
         private int movementSpeed;
         private int attackPower;
         private int firingSpeed;
@@ -17,7 +18,15 @@ namespace SkeletonWarrior
         private int x;
         private int y;
         public static ConsoleColor playerColor = ConsoleColor.Blue;
+        private int collisions;
 
+        public  int Collisions
+        {
+            get { return collisions; }
+            set { collisions = value; }
+        }
+
+        
         public Player(int x, int y, int movementSpeed, int attackPower, int firingSpeed, int playerLevel, int health)
         {
             this.x = x;
@@ -44,6 +53,7 @@ namespace SkeletonWarrior
             get { return this.movementSpeed; }
             set { this.movementSpeed = value; }
         }
+        
         public int AttackPower
         {
             get { return this.attackPower; }
@@ -54,7 +64,7 @@ namespace SkeletonWarrior
             get { return this.firingSpeed; }
             set { this.firingSpeed = value; }
         }
-        public int PlayerLevel
+        public  int PlayerLevel
         {
             get { return this.playerLevel; }
             set { this.playerLevel = value; }
@@ -95,32 +105,49 @@ namespace SkeletonWarrior
                         {
                             GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1));
                         }
-                        break;                     
-                    case ConsoleKey.DownArrow:     
+                        break;
+                    case ConsoleKey.DownArrow:
                         if (y < Console.WindowHeight - 1)
                         {
                             GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2));
-                        }         
-                        break;                     
+                        }
+                        break;
                     case ConsoleKey.RightArrow:
                         if (x < Console.WindowWidth - 4)
                         {
                             GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4));
-                        }                           
-                        break;                     
+                        }
+                        break;
                     case ConsoleKey.LeftArrow:
                         if (x > 2)
                         {
-                            GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3)); 
-                        }                       
+                            GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3));
+                        }
                         break;
-                    default:  
+                    case ConsoleKey.D1: 
+                        this.movementSpeed++;
+                        this.Collisions = 0;
+                        break;   // Do something 
+                    case ConsoleKey.D2: 
+                        this.attackPower++; 
+                        this.Collisions = 0;
+                        break;   // Do something 
+                    case ConsoleKey.D3: 
+                        this.firingSpeed++; 
+                        this.Collisions = 0;
+                        break;   // Do something 
+                    case ConsoleKey.D4:
+                        this.health++;
+                        this.Collisions = 0;
+                        break;   // Do something 
+                    default:
                         break;
                 }
+             //   this.Collisions = 0;
                 CheckWallCollision();
             }
         }
-
+     
         public void ShootAndMoveBullets()
         {
             foreach (var element in GameLogic.ShotBullets.ToList())
@@ -129,7 +156,7 @@ namespace SkeletonWarrior
                 element.UpdateBullet();
             }
         }
-
+        
         private void CheckWallCollision()
         {
             if (this.x <= movementSpeed)
@@ -151,15 +178,56 @@ namespace SkeletonWarrior
             }
         }
 
-        public void UpdateStatsOnLevelUp()
+        public static void UpdateStatsOnLevelUp(Player player)
         {
+            //Runs when the player kills enough enemies that he levels up. 
+
+            ConsoleColor foreground = Console.ForegroundColor;
+            //menu
+            SetCursorPosition(1, 1);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Level UP!");
+            SetCursorPosition(1, 2);
+            Console.WriteLine("Pick ability: ");
+            SetCursorPosition(1, 3);
+            Console.WriteLine("1. Movement Speed" + player.movementSpeed);
+            SetCursorPosition(1, 4);
+            Console.WriteLine("2. Attack Power" + player.attackPower);
+            SetCursorPosition(1, 5);
+            Console.WriteLine("3. Firing Speed" + player.firingSpeed);
+            SetCursorPosition(1, 6);
+            Console.WriteLine("4. Lives" + player.playerLevel);
+            Console.ForegroundColor = foreground;
+
+            //player choice
+            bool commandCorrect = false;
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                switch (key.Key)
+                {
+                    
+                    default: break;
+                }
+            }
+
             //Runs when the player levels up.
-            SetPlayerColorOnLevelUp();
+            player.SetPlayerColorOnLevelUp();
+        }
+        public static void SetCursorPosition(int x, int y)
+        {
+            Console.SetCursorPosition(Console.BufferWidth - 120 + x, Console.BufferHeight - 40 + y);
         }
 
         public void SetPlayerColorOnLevelUp()
         {
             //Runs when the player levels up and makes him darker.
+            switch (collisions)
+            {
+                case 0: playerColor = ConsoleColor.White; break;
+                case 1: playerColor = ConsoleColor.Blue; break;
+                case 2: playerColor = ConsoleColor.Red; break;
+            }
         }
     }
 }

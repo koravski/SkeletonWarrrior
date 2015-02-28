@@ -10,24 +10,17 @@ namespace SkeletonWarrior
         /// <summary>
         /// Main menu
         /// </summary>
-        private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
+        private static readonly string[] menus = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
 
         private static int currentSelection = 0;
         private static int menuSelected = 0;
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
-        private static string selector = ">";
 
         public static void Show()
         {
-            while (true)
-            {
-                ShowMenu();
-                HandleInput();
-                Thread.Sleep(20);
-                Console.Clear();
-            }
+            //Runs in the beginning of the game.
         }
         public static void StartGame()
         {
@@ -72,9 +65,13 @@ namespace SkeletonWarrior
                 {
                     enemy.WriteEnemyOnScreen();
                 }
+                if (player.Collisions == 5)
+                {
+                    Player.UpdateStatsOnLevelUp(player);
+                }
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
-                    if (bullet.BulletCollisionCheck())
+                    if (bullet.BulletCollisionCheck(player))
                     {
                         break;
                     }
@@ -89,74 +86,46 @@ namespace SkeletonWarrior
         /// <summary>
         /// Show main menu
         /// </summary>
-        private static void HandleInput()
-        {
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo key = Console.ReadKey();
-
-                if (key.Key == ConsoleKey.UpArrow)
-                {
-                    currentSelection--;
-                }
-                else if (key.Key == ConsoleKey.DownArrow)
-                {
-                    currentSelection++;
-                }
-                else if (key.Key == ConsoleKey.Enter)
-                {
-                    CheckUserChoice();
-                }
-
-                if (currentSelection < 0)
-                {
-                    currentSelection = menu.GetLength(0) - 1;
-                }
-                else if (currentSelection > menu.GetLength(0) - 1)
-                {
-                    currentSelection = 0;
-                }
-            }
-        }
-
-        private static void CheckUserChoice()
-        {
-            switch (currentSelection)
-            {
-                case 0:
-                    StartGame();
-                    break;
-                case 1:
-                    ChangeDifficultyLevel();
-                    break;
-                case 2:
-                    ShowLeaderboards();
-                    break;
-                case 3:
-                    ShowCredits();
-                    break;
-                case 4:
-                    Environment.Exit(0);
-                    break;
-            }
-        }
-
         public static void ShowMenu()
         {
-
-            for (int i = 0; i < menu.GetLength(0); i++)
+            for (int i = 1; i <= menus.Length; i++)
             {
-                if (currentSelection == i)
+                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 8 + i);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("{0}.{1}", i, menus[i-1]);
+            }
+
+            bool choice = false;
+            while (!choice)
+            {
+                if (Console.KeyAvailable)
                 {
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2 - selector.Length, Console.WindowHeight / 2 + 2 * i);
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Write(selector + menu[i]);
-                    Console.ForegroundColor = ConsoleColor.White;
-                }
-                else
-                {
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2, Console.WindowHeight / 2 + 2 * i);
-                    Console.Write(menu[i]);
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.D1:
+                            StartGame();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D2:
+                            ChangeDifficultyLevel();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D3:
+                            ShowLeaderboards();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D4:
+                            ShowCredits();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D5:
+                            ExitGame();
+                            break;
+                        default:
+                            choice = false;
+                            break;
+                    }
                 }
             }
         }
@@ -176,39 +145,8 @@ namespace SkeletonWarrior
         private static void ShowLeaderboards()
         {
             Console.Clear();
-            int counter = 0;
-            string line;
-
-            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
-            Console.WriteLine("Failed Attempts:");
-            var reader = new StreamReader(@"..\..\file.txt");
-            int failedCount = 1;
-            while ((line = reader.ReadLine()) != null)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
-                Console.WriteLine(failedCount + ". " + line);
-                counter++;
-                failedCount++;
-            }
-            reader.Close();
-            failedCount = 0;
-            Console.ResetColor();
-
-            int counter1 = 0;
-            string line1;
-            Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
-            Console.WriteLine("Successful Attempts:");
-            var reader1 = new StreamReader(@"..\..\file.txt");
-            int successCount = 1;
-            while ((line1 = reader1.ReadLine()) != null)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
-                Console.WriteLine(successCount + ". " + line1);
-                counter1++;
-                successCount++;
-            }
-            reader.Close();
-            successCount = 0;
+            //TODO: show leaders board;
+            Console.WriteLine("Leaders:");
             
             Console.ReadKey();
             BackToMenu();

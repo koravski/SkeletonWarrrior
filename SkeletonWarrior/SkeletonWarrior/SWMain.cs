@@ -8,7 +8,7 @@ namespace SkeletonWarrior
         static void Main()
         {
             SetInitialConsoleSettings();
-            Menu.Show();
+            Menu.ShowMenu();
         }
         private static void SetInitialConsoleSettings()
         {
@@ -17,6 +17,7 @@ namespace SkeletonWarrior
             Console.Title = "Skeleton Warrior";
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
+
         }
     }
 }
