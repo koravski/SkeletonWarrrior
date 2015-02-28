@@ -73,6 +73,8 @@ namespace SkeletonWarrior
                     }
                 }
 
+                Enemy.GetBoss(Enemy.GetBossFile);
+
                 GameLogic.LevelUpPlayer();
                 Thread.Sleep(20);
                 Console.Clear();
