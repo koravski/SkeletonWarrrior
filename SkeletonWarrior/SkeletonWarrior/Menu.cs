@@ -157,16 +157,16 @@ namespace SkeletonWarrior
             Console.Clear();
             int counter = 0;
             string line;
-            
-            
-           
-            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight/6);
+            //TODO: show leaders board;
+
+
+            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
             Console.WriteLine("Failed Attempts:");
             var reader = new StreamReader(@"..\..\file.txt");
             int failedCount = 1;
             while ((line = reader.ReadLine()) != null)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5  + counter);
+                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
                 Console.WriteLine(failedCount + ". " + line);
                 counter++;
                 failedCount++;
@@ -174,8 +174,8 @@ namespace SkeletonWarrior
             reader.Close();
             failedCount = 0;
             Console.ResetColor();
-            
-            int counter1 =  0;
+
+            int counter1 = 0;
             string line1;
             Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
             Console.WriteLine("Successful Attempts:");
@@ -183,14 +183,14 @@ namespace SkeletonWarrior
             int successCount = 1;
             while ((line1 = reader1.ReadLine()) != null)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5  +  counter1);
+                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
                 Console.WriteLine(successCount + ". " + line1);
                 counter1++;
                 successCount++;
             }
             reader.Close();
             successCount = 0;
-            
+
             Console.ReadKey();
             BackToMenu();
         }
