@@ -85,7 +85,7 @@ namespace SkeletonWarrior
         {
             for (int i = 1; i <= menus.Length; i++)
             {
-                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 8 + i);
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 8 + i);
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("{0}.{1}", i, menus[i-1]);
             }
