@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace SkeletonWarrior
 {
@@ -37,6 +38,7 @@ namespace SkeletonWarrior
             this.health = health;
             this.enemyType = enemyType;
             PickEnemyCoords();
+            
         }
         private void PickEnemyCoords()
         {
@@ -93,64 +95,37 @@ namespace SkeletonWarrior
         public void WriteEnemyOnScreen()
         {
             ConsoleColor foreground = Console.BackgroundColor;
-            Console.ForegroundColor =  enemyColor;
+            Console.ForegroundColor = enemyColor;
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(EnemyType);
             Console.ForegroundColor = foreground;
         }
 
-        public void Move()
+        public void Move(int playerX, int playerY)
         {
+            
+            if (this.x < playerX)
+            {
+
+                this.x++;
+            }
+            else if (this.x > playerX)
+            {
+                this.x--;
+            }
+            if (playerY > this.y)
+            {
+                this.y++;
+            }
+            else if (this.y > playerY)
+            {
+                this.y--;
+            }
         }
 
         public void Shoot()
         {
-
-        }
-
-        public void Chase()
-        {
-
-        }
-
-        public static void GetBoss(string bossFile)
-        {
-            ReadBoss(bossFile);
-
-            Console.ForegroundColor = BossColor;
-
-            for (int i = 0; i < bossMatrix.GetLength(0); i++)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 16 + i);
-                for (int j = 0; j < bossMatrix.GetLength(1); j++)
-                {
-                    Console.Write(bossMatrix[i, j]);
-                }
-                Console.WriteLine();
-            }
-        }
-
-        private static void ReadBoss(string bossFile)
-        {
-            try
-            {
-                String input = File.ReadAllText(bossFile);
-
-                int i = 0;
-
-                foreach (var row in input.Split('\n'))
-                {
-                    for (int j = 0; j < row.Length; j++)
-                    {
-                        bossMatrix[i, j] = row[j];
-                    }
-                    i++;
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("Could not found boss file!");
-            }
+           
         }
     }
 }

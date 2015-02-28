@@ -17,6 +17,7 @@ namespace SkeletonWarrior
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
+        private static int mover = 0;
 
         public static void Show()
         {
@@ -33,6 +34,7 @@ namespace SkeletonWarrior
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
             player.PlayerModel = "=-.☺.-=";
+           
             while (playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
@@ -61,10 +63,7 @@ namespace SkeletonWarrior
                 {
                     GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
                 }
-                foreach (var enemy in GameLogic.EnemyList)
-                {
-                    enemy.WriteEnemyOnScreen();
-                }
+                EnemyBehavior(player);
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
                     if (bullet.BulletCollisionCheck())
@@ -72,9 +71,25 @@ namespace SkeletonWarrior
                         break;
                     }
                 }
-
                 Thread.Sleep(20);
                 Console.Clear();
+            }
+        }
+
+        public static void EnemyBehavior(Player player)
+        {
+            mover++;
+            foreach (var enemy in GameLogic.EnemyList)
+            {
+                enemy.WriteEnemyOnScreen();
+            }
+            if (mover == 5)
+            {
+                foreach (var enemy in GameLogic.EnemyList)
+                {
+                    enemy.Move(player.X, player.Y);
+                }
+                mover = 0;
             }
         }
 
@@ -142,16 +157,16 @@ namespace SkeletonWarrior
             Console.Clear();
             int counter = 0;
             string line;
-            
-            
-           
-            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight/6);
+            //TODO: show leaders board;
+
+
+            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
             Console.WriteLine("Failed Attempts:");
             var reader = new StreamReader(@"..\..\file.txt");
             int failedCount = 1;
             while ((line = reader.ReadLine()) != null)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5  + counter);
+                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
                 Console.WriteLine(failedCount + ". " + line);
                 counter++;
                 failedCount++;
@@ -159,8 +174,8 @@ namespace SkeletonWarrior
             reader.Close();
             failedCount = 0;
             Console.ResetColor();
-            
-            int counter1 =  0;
+
+            int counter1 = 0;
             string line1;
             Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
             Console.WriteLine("Successful Attempts:");
@@ -168,14 +183,14 @@ namespace SkeletonWarrior
             int successCount = 1;
             while ((line1 = reader1.ReadLine()) != null)
             {
-                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5  +  counter1);
+                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
                 Console.WriteLine(successCount + ". " + line1);
                 counter1++;
                 successCount++;
             }
             reader.Close();
             successCount = 0;
-            
+
             Console.ReadKey();
             BackToMenu();
         }
