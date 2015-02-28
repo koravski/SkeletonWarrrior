@@ -1,2 +1,0 @@
-# SkeletonWarrrior
-Team Skeleton Warrior 

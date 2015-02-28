@@ -1,0 +1,6 @@
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
