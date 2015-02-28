@@ -9,7 +9,6 @@ namespace SkeletonWarrior
         private int y;
         private int direction;
         private char bulletModel = '@';
-        private int indexOfBullet;
         //directions:
         // 1 - up
         // 2 - down

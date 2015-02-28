@@ -16,12 +16,3 @@ C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarri
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
-C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
-C:\Users\Pav\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
-C:\Users\Pav\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
-C:\Users\Pav\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb

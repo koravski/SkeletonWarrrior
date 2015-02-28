@@ -87,16 +87,9 @@ namespace SkeletonWarrior
             get { return bossFile; }
         }
 
-        public static void SetEnemyColorOnLevelUp()//int level)
+        public static void SetEnemyColorOnLevelUp()
         {
-           //if(level == 1)
-           //{
-           //    Console.ForegroundColor = ConsoleColor.Magenta;
-           //}
-           // else if(level == 2)
-           //{
-           //    Console.ForegroundColor = ConsoleColor.Green;
-           //}
+            //Runs when enemy levels up and makes him darker (or the lightest color).
         }
 
         public void WriteEnemyOnScreen()
@@ -130,7 +123,30 @@ namespace SkeletonWarrior
 
         public void Shoot(Player player)
         {
-            
+            if (player.X - 3 <= this.x &&
+                player.X + 5 >= this.x &&
+                player.Y < this.y)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y - 1, 1));
+            }
+            else if (player.X - 3 <= this.x &&
+                     player.X + 5 >= this.x &&
+                     player.Y > this.y)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y + 1, 2));
+            }
+            else if (player.Y - 1 <= this.y &&
+                     player.Y + 1 >= this.y && 
+                     player.X < this.x)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 2, this.y, 3));
+            }
+            else if (player.Y - 1 <= this.y &&
+                     player.Y + 1 >= this.y &&
+                     player.X > this.x)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x, this.y, 4));
+            }
         }
 
         public static void GetBoss(string bossFile)
