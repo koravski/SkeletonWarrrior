@@ -1,6 +1,12 @@
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
-D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+C:\Users\newmast\Desktop\SkeletonWarrrior-549d794d4a9fb9ffb585aeab90857a9094ef2253\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+C:\Users\newmast\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
