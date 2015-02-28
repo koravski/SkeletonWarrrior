@@ -1,7 +1,6 @@
 ﻿//A class for the enemies
 using System;
 using System.Collections.Generic;
-using System.Threading;
 
 namespace SkeletonWarrior
 {
@@ -26,7 +25,6 @@ namespace SkeletonWarrior
             this.health = health;
             this.enemyType = enemyType;
             PickEnemyCoords();
-            
         }
         private void PickEnemyCoords()
         {
@@ -83,36 +81,24 @@ namespace SkeletonWarrior
         public void WriteEnemyOnScreen()
         {
             ConsoleColor foreground = Console.BackgroundColor;
-            Console.ForegroundColor = enemyColor;
+            Console.ForegroundColor =  enemyColor;
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(EnemyType);
             Console.ForegroundColor = foreground;
         }
 
-        public void Move(int playerX, int playerY)
+        public void Move()
         {
-            
-            if (this.x < playerX)
-            {
-                this.x++;
-            }
-            else if (this.x > playerX)
-            {
-                this.x--;
-            }
-            if (playerY > this.y)
-            {
-                this.y++;
-            }
-            else if (this.y > playerY)
-            {
-                this.y--;
-            }
         }
 
         public void Shoot()
         {
-           
+
+        }
+
+        public void Chase()
+        {
+
         }
     }
 }
