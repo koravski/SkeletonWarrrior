@@ -44,8 +44,7 @@ namespace SkeletonWarrior
         public void LevelUpPlayer()
         {
             //Runs when the player kills enough enemies that he levels up. 
-<<<<<<< HEAD
-=======
+
             ConsoleColor foreground = Console.ForegroundColor;
             //menu
             SetCursorPosition(1, 1);
@@ -84,7 +83,6 @@ namespace SkeletonWarrior
         public static void SetCursorPosition(int x, int y)
         {
             Console.SetCursorPosition(Console.BufferWidth - 120 + x, Console.BufferHeight - 40 + y);
->>>>>>> origin/master
         }
 
         public void SetBackgroundColorOnLevelChange()

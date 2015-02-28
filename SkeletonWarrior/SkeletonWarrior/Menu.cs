@@ -72,11 +72,6 @@ namespace SkeletonWarrior
                         break;
                     }
                 }
-
-<<<<<<< HEAD
-=======
-                GameLogic.LevelUpPlayer();
->>>>>>> origin/master
                 Thread.Sleep(20);
                 Console.Clear();
             }
