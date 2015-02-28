@@ -133,17 +133,24 @@ namespace SkeletonWarrior
 
         private static void ReadBoss(string bossFile)
         {
-            String input = File.ReadAllText(bossFile);
-
-            int i = 0;
-            
-            foreach (var row in input.Split('\n'))
+            try
             {
-                for (int j = 0; j < row.Length; j++)
+                String input = File.ReadAllText(bossFile);
+
+                int i = 0;
+
+                foreach (var row in input.Split('\n'))
                 {
-                    bossMatrix[i, j] = row[j];
+                    for (int j = 0; j < row.Length; j++)
+                    {
+                        bossMatrix[i, j] = row[j];
+                    }
+                    i++;
                 }
-                i++;
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Could not found boss file!");
             }
         }
     }
