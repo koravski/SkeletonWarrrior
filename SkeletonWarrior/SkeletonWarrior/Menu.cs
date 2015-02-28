@@ -73,7 +73,7 @@ namespace SkeletonWarrior
                     }
                 }
 
-                Enemy.GetBoss(Enemy.GetBossFile);
+                //Enemy.GetBoss(Enemy.GetBossFile);
                 Thread.Sleep(20);
                 Console.Clear();
             }
