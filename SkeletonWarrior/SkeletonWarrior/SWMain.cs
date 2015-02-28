@@ -8,7 +8,7 @@ namespace SkeletonWarrior
         static void Main()
         {
             SetInitialConsoleSettings();
-            Menu.StartGame();
+            Menu.ShowMenu();
         }
         private static void SetInitialConsoleSettings()
         {

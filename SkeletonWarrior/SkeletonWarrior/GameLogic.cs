@@ -79,7 +79,7 @@ namespace SkeletonWarrior
                 }
             }
         }
-        static void SetCursorPosition(int x, int y)
+        public static void SetCursorPosition(int x, int y)
         {
             Console.SetCursorPosition(Console.BufferWidth - 120 + x, Console.BufferHeight - 40 + y);
         }

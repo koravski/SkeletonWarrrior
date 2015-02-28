@@ -1,12 +1,17 @@
 ﻿//The menu the player sees when he starts the game. Contains the functions for starting new game, difficulty level, leaderboards, credits, exit game
 using System;
+using System.IO;
 using System.Threading;
 
 namespace SkeletonWarrior
 {
     class Menu
     {
-        private static string[] menus =  {"Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game"};
+        /// <summary>
+        /// Main menu
+        /// </summary>
+        private static readonly string[] menus = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
+
         private static int currentSelection = 0;
         private static int menuSelected = 0;
         private static string characterName;
@@ -19,6 +24,7 @@ namespace SkeletonWarrior
         }
         public static void StartGame()
         {
+            Console.Clear();
             Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
             Console.Write("Enter character name: ");
             characterName = Console.ReadLine();
@@ -27,7 +33,7 @@ namespace SkeletonWarrior
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
             player.PlayerModel = "=-.☺.-=";
-            while(playing)
+            while (playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
                 ConsoleColor background = Console.ForegroundColor;
@@ -66,27 +72,107 @@ namespace SkeletonWarrior
                         break;
                     }
                 }
+
                 GameLogic.LevelUpPlayer();
                 Thread.Sleep(20);
                 Console.Clear();
             }
         }
 
+        /// <summary>
+        /// Show main menu
+        /// </summary>
+        public static void ShowMenu()
+        {
+            for (int i = 1; i <= menus.Length; i++)
+            {
+                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 8 + i);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("{0}.{1}", i, menus[i-1]);
+            }
+
+            bool choice = false;
+            while (!choice)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.D1:
+                            StartGame();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D2:
+                            ChangeDifficultyLevel();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D3:
+                            ShowLeaderboards();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D4:
+                            ShowCredits();
+                            choice = true;
+                            break;
+                        case ConsoleKey.D5:
+                            ExitGame();
+                            break;
+                        default:
+                            choice = false;
+                            break;
+                    }
+                }
+            }
+        }
+
         private static void ChangeDifficultyLevel()
         {
+            Console.Clear();
+            //TODO: Change current dificulty
 
+            Console.ReadKey();
+            BackToMenu();
         }
 
+        /// <summary>
+        /// Read from file all leaders and show them on console
+        /// </summary>
         private static void ShowLeaderboards()
         {
+            Console.Clear();
+            //TODO: show leaders board;
+            Console.WriteLine("Leaders:");
             
+            Console.ReadKey();
+            BackToMenu();
         }
 
+        /// <summary>
+        /// Show credits and final text
+        /// </summary>
         private static void ShowCredits()
         {
-
+            Console.Clear();
+            //TODO: show text
+            Console.WriteLine("Credits:");
+            
+            Console.ReadKey();
+            BackToMenu();
         }
 
+        /// <summary>
+        /// Return back to main menu
+        /// </summary>
+        private static void BackToMenu()
+        {
+            Console.Clear();
+            ShowMenu();
+        }
+
+        /// <summary>
+        /// Exit game!
+        /// </summary>
         private static void ExitGame()
         {
             Environment.Exit(0);
