@@ -9,10 +9,11 @@ namespace SkeletonWarrior
     {
         private static readonly string bossFile = "boss.txt";
         private static char[,] bossMatrix = new char[13, 28];
-        private const int BossAttackPower = 4;
-        private const int BossMovementSpeed = 3;
-        private const int BossFiringSpeed = 3;
-        private const int BossHealth = 5;
+        public static int BossAttackPower = 100;
+        public static int BossMovementSpeed = 40;
+        public static int BossFiringSpeed = 30;
+        public static int BossHealth = 5000;
+        public static ConsoleColor BossColor = ConsoleColor.Red;
 
         private int x;
         private int y;
@@ -118,7 +119,7 @@ namespace SkeletonWarrior
         {
             ReadBoss(bossFile);
 
-            Console.ForegroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = BossColor;
 
             for (int i = 0; i < bossMatrix.GetLength(0); i++)
             {
