@@ -89,7 +89,6 @@ namespace SkeletonWarrior
 
         public void Move()
         {
-
         }
 
         public void Shoot()
