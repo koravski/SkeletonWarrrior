@@ -100,10 +100,6 @@ namespace SkeletonWarrior
                 {
                     mover = 0;
                 }
-                if (player.Collisions == 5)
-                {
-                    Player.UpdateStatsOnLevelUp(player);
-                }
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
                     if (bullet.BulletCollisionCheck(player))
@@ -215,35 +211,53 @@ namespace SkeletonWarrior
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
             Console.WriteLine("Failed Attempts:");
-            var reader = new StreamReader(@"..\..\failed.txt");
-            int failedCount = 1;
-            while ((line = reader.ReadLine()) != null)
+            try
             {
-                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
-                Console.WriteLine(failedCount + ". " + line);
-                counter++;
-                failedCount++;
+                using (var reader = new StreamReader(@"..\..\failed.txt"))
+                {
+                    int failedCount = 1;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
+                        Console.WriteLine(failedCount + ". " + line);
+                        counter++;
+                        failedCount++;
+                    }
+                    failedCount = 0;
+                    Console.ResetColor();
+                }
             }
-            reader.Close();
-            failedCount = 0;
-            Console.ResetColor();
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Can't load failed attempts database!");
+            }
 
             int counter1 = 0;
             string line1;
             Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
             Console.WriteLine("Successful Attempts:");
-            var reader1 = new StreamReader(@"..\..\successful.txt");
-            int successCount = 1;
-            while ((line1 = reader1.ReadLine()) != null)
-            {
-                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
-                Console.WriteLine(successCount + ". " + line1);
-                counter1++;
-                successCount++;
-            }
-            reader.Close();
-            successCount = 0;
 
+            try
+            {
+                using (var reader1 = new StreamReader(@"..\..\successful.txt"))
+                {
+                
+                    int successCount = 1;
+                    while ((line1 = reader1.ReadLine()) != null)
+                    {
+                        Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
+                        Console.WriteLine(successCount + ". " + line1);
+                        counter1++;
+                        successCount++;
+                    }
+                    successCount = 0;
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Can't load successfully attempts database!");
+            }
+            
             Console.ReadKey();
             BackToMenu();
         }
