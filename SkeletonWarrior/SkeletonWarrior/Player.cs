@@ -174,13 +174,13 @@ namespace SkeletonWarrior
                 SetCursorPosition(1, 2);
                 Console.WriteLine("Pick ability: ");
                 SetCursorPosition(1, 3);
-                Console.WriteLine("1. Movement Speed" + player.movementSpeed);
+                Console.WriteLine("1. Movement Speed");
                 SetCursorPosition(1, 4);
-                Console.WriteLine("2. Attack Power" + player.attackPower);
+                Console.WriteLine("2. Attack Power" );
                 SetCursorPosition(1, 5);
-                Console.WriteLine("3. Firing Speed" + player.firingSpeed);
+                Console.WriteLine("3. Firing Speed");
                 SetCursorPosition(1, 6);
-                Console.WriteLine("4. Lives" + player.playerLevel);
+                Console.WriteLine("4. Lives");
                 Console.ForegroundColor = foreground;
 
                 //player choice
