@@ -13,7 +13,6 @@ namespace SkeletonWarrior
         private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
 
         private static int currentSelection = 0;
-        private static int menuSelected = 0;
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
@@ -286,14 +285,6 @@ namespace SkeletonWarrior
         {
             Console.Clear();
             ShowMenu();
-        }
-
-        /// <summary>
-        /// Exit game!
-        /// </summary>
-        private static void ExitGame()
-        {
-            Environment.Exit(0);
         }
     }
 }

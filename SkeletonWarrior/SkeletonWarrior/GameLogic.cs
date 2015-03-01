@@ -41,11 +41,6 @@ namespace SkeletonWarrior
             Enemy.SetEnemyColorOnLevelUp();
         }
 
-        public void LevelUpPlayer()
-        {
-            //Runs when the player kills enough enemies that he levels up.!!!!!!!!!!! DO WE NEED THIS METHOD AT ALL? 
-
-        }
         public static void SetCursorPosition(int x, int y)
         {
             Console.SetCursorPosition(Console.BufferWidth - 120 + x, Console.BufferHeight - 40 + y);
