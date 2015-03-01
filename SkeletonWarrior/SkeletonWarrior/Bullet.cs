@@ -12,7 +12,6 @@ namespace SkeletonWarrior
         private int y;
         private int direction;
         private char bulletModel = '@';
-        private int indexOfBullet;
         //directions:
         // 1 - up
         // 2 - down
@@ -91,7 +90,7 @@ namespace SkeletonWarrior
 	        {
                 this.x--;
 	        }
-            else // if bullet is going right
+            else if (direction == 4)// if bullet is going right
 	        {
                 this.x++;
 	        }

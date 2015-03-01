@@ -101,18 +101,52 @@ namespace SkeletonWarrior
             Console.ForegroundColor = foreground;
         }
 
-        public void Move()
+        public void Move(Player player)
         {
+            if (this.X > player.X)
+            {
+                this.X--;
+            }
+            else if (this.X < player.X)
+            {
+                this.X++;
+            }
+            if (this.Y > player.Y)
+            {
+                this.Y--;
+            }
+            else if (this.Y < player.Y)
+            {
+                this.Y++;
+            }
         }
 
-        public void Shoot()
+        public void Shoot(Player player)
         {
-
-        }
-
-        public void Chase()
-        {
-
+            if (player.X - 3 <= this.x &&
+                player.X + 5 >= this.x &&
+                player.Y < this.y)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y - 1, 1));
+            }
+            else if (player.X - 3 <= this.x &&
+                     player.X + 5 >= this.x &&
+                     player.Y > this.y)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y + 1, 2));
+            }
+            else if (player.Y - 1 <= this.y &&
+                     player.Y + 1 >= this.y && 
+                     player.X < this.x)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 2, this.y, 3));
+            }
+            else if (player.Y - 1 <= this.y &&
+                     player.Y + 1 >= this.y &&
+                     player.X > this.x)
+            {
+                GameLogic.ShotBullets.Add(new Bullet(this.x, this.y, 4));
+            }
         }
 
         public static void GetBoss(string bossFile)

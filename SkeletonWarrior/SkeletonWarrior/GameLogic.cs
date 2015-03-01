@@ -43,7 +43,50 @@ namespace SkeletonWarrior
 
         public void LevelUpPlayer()
         {
-            
+            //Runs when the player kills enough enemies that he levels up. 
+
+            ConsoleColor foreground = Console.ForegroundColor;
+            //menu
+            SetCursorPosition(1, 1);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Level UP!");
+            SetCursorPosition(1, 2);
+            Console.WriteLine("Pick ability: ");
+            SetCursorPosition(1, 3);
+            Console.WriteLine("1. Movement Speed");
+            SetCursorPosition(1, 4);
+            Console.WriteLine("2. Attack Power");
+            SetCursorPosition(1, 5);
+            Console.WriteLine("3. Firing Speed");
+            SetCursorPosition(1, 6);
+            Console.WriteLine("4. Lives");
+            Console.ForegroundColor = foreground;
+
+            //player choice
+            bool commandCorrect = false;
+            while (!commandCorrect)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.D1: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D2: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D3: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        case ConsoleKey.D4: 
+                            commandCorrect = true; 
+                            break;   // Do something 
+                        default: break;
+                    }
+                }
+            }
         }
         public static void SetCursorPosition(int x, int y)
         {

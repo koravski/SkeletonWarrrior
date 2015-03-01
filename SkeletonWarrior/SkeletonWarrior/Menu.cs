@@ -10,17 +10,30 @@ namespace SkeletonWarrior
         /// <summary>
         /// Main menu
         /// </summary>
-        private static readonly string[] menus = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
+        private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
 
         private static int currentSelection = 0;
         private static int menuSelected = 0;
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
+        private static string selector = ">";
+        private static int mover = 0;
 
+        public static int Mover
+        {
+            get { return mover; }
+            set { mover = value; }
+        }
         public static void Show()
         {
-            //Runs in the beginning of the game.
+            while (true)
+            {
+                ShowMenu();
+                HandleInput();
+                Thread.Sleep(20);
+                Console.Clear();
+            }
         }
         public static void StartGame()
         {
@@ -61,9 +74,31 @@ namespace SkeletonWarrior
                 {
                     GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
                 }
+
+                if (GameLogic.EnemyList.Count > 0)
+                {
+                    mover++;
+                }
+                bool moving = false;
                 foreach (var enemy in GameLogic.EnemyList)
                 {
                     enemy.WriteEnemyOnScreen();
+                    if (mover == 11)
+                    {
+                        if (enemy.EnemyType != '*')
+                        {
+                            enemy.Move(player);
+                        }
+                        else
+                        {
+                            enemy.Shoot(player);
+                        }
+                        moving = true;
+                    }
+                }
+                if (moving)
+                {
+                    mover = 0;
                 }
                 if (player.Collisions == 5)
                 {
@@ -86,46 +121,74 @@ namespace SkeletonWarrior
         /// <summary>
         /// Show main menu
         /// </summary>
+        private static void HandleInput()
+        {
+            if (Console.KeyAvailable)
+            {
+                ConsoleKeyInfo key = Console.ReadKey();
+
+                if (key.Key == ConsoleKey.UpArrow)
+                {
+                    currentSelection--;
+                }
+                else if (key.Key == ConsoleKey.DownArrow)
+                {
+                    currentSelection++;
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    CheckUserChoice();
+                }
+
+                if (currentSelection < 0)
+                {
+                    currentSelection = menu.GetLength(0) - 1;
+                }
+                else if (currentSelection > menu.GetLength(0) - 1)
+                {
+                    currentSelection = 0;
+                }
+            }
+        }
+
+        private static void CheckUserChoice()
+        {
+            switch (currentSelection)
+            {
+                case 0:
+                    StartGame();
+                    break;
+                case 1:
+                    ChangeDifficultyLevel();
+                    break;
+                case 2:
+                    ShowLeaderboards();
+                    break;
+                case 3:
+                    ShowCredits();
+                    break;
+                case 4:
+                    Environment.Exit(0);
+                    break;
+            }
+        }
+
         public static void ShowMenu()
         {
-            for (int i = 1; i <= menus.Length; i++)
-            {
-                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 8 + i);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("{0}.{1}", i, menus[i-1]);
-            }
 
-            bool choice = false;
-            while (!choice)
+            for (int i = 0; i < menu.GetLength(0); i++)
             {
-                if (Console.KeyAvailable)
+                if (currentSelection == i)
                 {
-                    ConsoleKeyInfo key = Console.ReadKey(true);
-                    switch (key.Key)
-                    {
-                        case ConsoleKey.D1:
-                            StartGame();
-                            choice = true;
-                            break;
-                        case ConsoleKey.D2:
-                            ChangeDifficultyLevel();
-                            choice = true;
-                            break;
-                        case ConsoleKey.D3:
-                            ShowLeaderboards();
-                            choice = true;
-                            break;
-                        case ConsoleKey.D4:
-                            ShowCredits();
-                            choice = true;
-                            break;
-                        case ConsoleKey.D5:
-                            ExitGame();
-                            break;
-                        default:
-                            choice = false;
-                            break;
-                    }
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2 - selector.Length, Console.WindowHeight / 2 + 2 * i);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write(selector + menu[i]);
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                else
+                {
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2, Console.WindowHeight / 2 + 2 * i);
+                    Console.Write(menu[i]);
                 }
             }
         }
@@ -145,9 +208,42 @@ namespace SkeletonWarrior
         private static void ShowLeaderboards()
         {
             Console.Clear();
+            int counter = 0;
+            string line;
             //TODO: show leaders board;
-            Console.WriteLine("Leaders:");
-            
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
+            Console.WriteLine("Failed Attempts:");
+            var reader = new StreamReader(@"..\..\failed.txt");
+            int failedCount = 1;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
+                Console.WriteLine(failedCount + ". " + line);
+                counter++;
+                failedCount++;
+            }
+            reader.Close();
+            failedCount = 0;
+            Console.ResetColor();
+
+            int counter1 = 0;
+            string line1;
+            Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
+            Console.WriteLine("Successful Attempts:");
+            var reader1 = new StreamReader(@"..\..\successful.txt");
+            int successCount = 1;
+            while ((line1 = reader1.ReadLine()) != null)
+            {
+                Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 5 + counter1);
+                Console.WriteLine(successCount + ". " + line1);
+                counter1++;
+                successCount++;
+            }
+            reader.Close();
+            successCount = 0;
+
             Console.ReadKey();
             BackToMenu();
         }
