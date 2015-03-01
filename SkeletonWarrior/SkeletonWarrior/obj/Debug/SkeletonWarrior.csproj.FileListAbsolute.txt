@@ -16,3 +16,9 @@ C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarri
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
 C:\Users\newmast\Desktop\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+C:\Users\Krasi\Documents\GitHub\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
