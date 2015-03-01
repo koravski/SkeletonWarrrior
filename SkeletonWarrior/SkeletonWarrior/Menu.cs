@@ -100,9 +100,13 @@ namespace SkeletonWarrior
                 {
                     mover = 0;
                 }
+                if (player.Collisions == 5)
+                {
+                    Player.UpdateStatsOnLevelUp(player);
+                }
                 foreach (var bullet in GameLogic.ShotBullets)
                 {
-                    if (bullet.BulletCollisionCheck())
+                    if (bullet.BulletCollisionCheck(player))
                     {
                         break;
                     }

@@ -5,6 +5,9 @@ namespace SkeletonWarrior
 {
     class Bullet
     {
+        
+   
+
         private int x;
         private int y;
         private int direction;
@@ -36,8 +39,9 @@ namespace SkeletonWarrior
         {
             get { return this.direction; }
         }
-        public bool BulletCollisionCheck()
+        public bool BulletCollisionCheck(Player player)
         {
+            
             foreach (var enemy in GameLogic.EnemyList)
             {
                 if ( (this.x == enemy.X - 1) &&
@@ -46,10 +50,12 @@ namespace SkeletonWarrior
                     int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
                     GameLogic.ShotBullets.RemoveAt(indexOfBullet);
                     GameLogic.EnemyList.RemoveAt(GameLogic.EnemyList.IndexOf(enemy));
+                    player.Collisions++;
                     return true;
                 }
             }
             return false;
+            
         }
 
         public void WriteBulletOnScreen()
