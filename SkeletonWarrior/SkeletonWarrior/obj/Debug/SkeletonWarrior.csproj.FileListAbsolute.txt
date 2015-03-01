@@ -4,3 +4,9 @@ D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\Sk
 D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
 D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
 D:\MARY_Files\Mary_documents\Visual Studio 2013\Projects\SkeletonWarrrior.git\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb

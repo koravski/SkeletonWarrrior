@@ -124,24 +124,6 @@ namespace SkeletonWarrior
                             GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3));
                         }
                         break;
-                    case ConsoleKey.D1: 
-                        this.movementSpeed++;
-                        this.Collisions = 0;
-                        break;   // Do something 
-                    case ConsoleKey.D2: 
-                        this.attackPower++; 
-                        this.Collisions = 0;
-                        break;   // Do something 
-                    case ConsoleKey.D3: 
-                        this.firingSpeed++; 
-                        this.Collisions = 0;
-                        break;   // Do something 
-                    case ConsoleKey.D4:
-                        this.health++;
-                        this.Collisions = 0;
-                        break;   // Do something 
-                    default:
-                        break;
                 }
              //   this.Collisions = 0;
                 CheckWallCollision();
@@ -180,27 +162,64 @@ namespace SkeletonWarrior
 
         public static void UpdateStatsOnLevelUp(Player player)
         {
-            //Runs when the player kills enough enemies that he levels up. 
+            bool isMenuShow = true;
+            while (isMenuShow)
+            {
+                ConsoleColor foreground = Console.ForegroundColor;
+                //menu
 
-            ConsoleColor foreground = Console.ForegroundColor;
-            //menu
-            SetCursorPosition(1, 1);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Level UP!");
-            SetCursorPosition(1, 2);
-            Console.WriteLine("Pick ability: ");
-            SetCursorPosition(1, 3);
-            Console.WriteLine("1. Movement Speed" + player.movementSpeed);
-            SetCursorPosition(1, 4);
-            Console.WriteLine("2. Attack Power" + player.attackPower);
-            SetCursorPosition(1, 5);
-            Console.WriteLine("3. Firing Speed" + player.firingSpeed);
-            SetCursorPosition(1, 6);
-            Console.WriteLine("4. Lives" + player.playerLevel);
-            Console.ForegroundColor = foreground;
+                SetCursorPosition(1, 1);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Level UP!");
+                SetCursorPosition(1, 2);
+                Console.WriteLine("Pick ability: ");
+                SetCursorPosition(1, 3);
+                Console.WriteLine("1. Movement Speed" + player.movementSpeed);
+                SetCursorPosition(1, 4);
+                Console.WriteLine("2. Attack Power" + player.attackPower);
+                SetCursorPosition(1, 5);
+                Console.WriteLine("3. Firing Speed" + player.firingSpeed);
+                SetCursorPosition(1, 6);
+                Console.WriteLine("4. Lives" + player.playerLevel);
+                Console.ForegroundColor = foreground;
 
-            //Runs when the player levels up.
-            player.SetPlayerColorOnLevelUp();
+                //player choice
+
+                ConsoleKeyInfo key = Console.ReadKey(true);
+                switch (key.Key)
+                {
+                    case ConsoleKey.D1:
+                        player.movementSpeed++;
+                        player.playerLevel++;
+                        player.Collisions = 0;
+                        isMenuShow = false;
+                        break;   // Do something 
+                    case ConsoleKey.D2:
+                        player.attackPower++;
+                        player.playerLevel++;
+                        player.Collisions = 0;
+                        isMenuShow = false;
+                        break;   // Do something 
+                    case ConsoleKey.D3:
+                        player.firingSpeed++;
+                        player.playerLevel++;
+                        player.Collisions = 0;
+                        isMenuShow = false;
+                        break;   // Do something 
+                    case ConsoleKey.D4:
+                        player.health++;
+                        player.playerLevel++;
+                        player.Collisions = 0;
+                        isMenuShow = false;
+                        break;   // Do something 
+                    default:
+                        break;
+                }
+
+
+                //Runs when the player levels up.
+                player.SetPlayerColorOnLevelUp();
+            }
         }
         public static void SetCursorPosition(int x, int y)
         {
@@ -210,11 +229,16 @@ namespace SkeletonWarrior
         public void SetPlayerColorOnLevelUp()
         {
             //Runs when the player levels up and makes him darker.
-            switch (collisions)
+            switch (playerLevel)
             {
                 case 0: playerColor = ConsoleColor.White; break;
                 case 1: playerColor = ConsoleColor.Blue; break;
                 case 2: playerColor = ConsoleColor.Red; break;
+                case 3: playerColor = ConsoleColor.Green; break;
+                case 4: playerColor = ConsoleColor.DarkCyan; break;
+                case 5: playerColor = ConsoleColor.Yellow; break;
+                case 6: playerColor = ConsoleColor.DarkMagenta; break;
+
             }
         }
     }

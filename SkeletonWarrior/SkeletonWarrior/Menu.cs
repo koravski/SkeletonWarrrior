@@ -108,6 +108,10 @@ namespace SkeletonWarrior
                     }
                 }
 
+                if (player.Collisions == 5)
+                {
+                    Player.UpdateStatsOnLevelUp(player);
+                }
                 //Enemy.GetBoss(Enemy.GetBossFile);
                 Thread.Sleep(20);
                 Console.Clear();
