@@ -4,7 +4,7 @@ Team Skeleton Warrior
 <div class=WordSection1>
 
 <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US
-style='font-size:22.0pt;line-height:107%'>Skeleton Warrior</span></p>
+style='font-size:22.0pt;line-height:107%'>Mail description</span></p>
 
 <p class=MsoListParagraphCxSpFirst style='text-indent:-18.0pt'><span
 lang=EN-US style='color:red'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
