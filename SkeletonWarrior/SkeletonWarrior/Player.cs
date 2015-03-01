@@ -199,18 +199,6 @@ namespace SkeletonWarrior
             Console.WriteLine("4. Lives" + player.playerLevel);
             Console.ForegroundColor = foreground;
 
-            //player choice
-            bool commandCorrect = false;
-            if (Console.KeyAvailable)
-            {
-                ConsoleKeyInfo key = Console.ReadKey(true);
-                switch (key.Key)
-                {
-                    
-                    default: break;
-                }
-            }
-
             //Runs when the player levels up.
             player.SetPlayerColorOnLevelUp();
         }
