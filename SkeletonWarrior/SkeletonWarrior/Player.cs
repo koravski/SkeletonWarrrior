@@ -84,7 +84,14 @@ namespace SkeletonWarrior
         {
             while (true)
             {
-                Thread.Sleep(200 - 50*movementSpeed);
+                if (movementSpeed <= 10)
+                {
+                    Thread.Sleep(200 - 18*movementSpeed);
+                }
+                else
+                {
+                    Thread.Sleep(20);
+                }
 
                 if (Console.KeyAvailable)
                 {
@@ -180,7 +187,12 @@ namespace SkeletonWarrior
                 SetCursorPosition(1, 2);
                 Console.WriteLine("Pick ability: ");
                 SetCursorPosition(1, 3);
-                Console.WriteLine("1. Movement Speed");
+                if (player.movementSpeed == 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("1. Movement Speed");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
                 SetCursorPosition(1, 4);
                 Console.WriteLine("2. Attack Power" );
                 SetCursorPosition(1, 5);
