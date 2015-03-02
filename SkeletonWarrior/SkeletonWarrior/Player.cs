@@ -259,6 +259,7 @@ namespace SkeletonWarrior
                 
                 //Runs when the player levels up.
                 player.SetPlayerColorOnLevelUp();
+                
             }
         }
         public static void SetCursorPosition(int x, int y)
@@ -281,6 +282,7 @@ namespace SkeletonWarrior
                 case 6: playerColor = ConsoleColor.DarkMagenta; break;
 
             }
+            SetPlayerModelOnLevelUP();
         }
 
         public void PrintPlayerStats()
@@ -298,6 +300,20 @@ namespace SkeletonWarrior
             Console.SetCursorPosition(Console.WindowWidth - 22, 6);
             Console.Write("Lives - " + health);
             Console.ForegroundColor = foreground;
+        }
+        public void SetPlayerModelOnLevelUP()
+        {
+            switch (playerLevel)
+            {
+                case 0: playerModel = "-.☺.-"; break;
+                case 1: playerModel = "-.☺.-"; break;
+                case 2: playerModel = "-.☺.="; break;
+                case 3: playerModel = "=.☺.="; break;
+                case 4: playerModel = "-.☺.=="; break;
+                case 5: playerModel = "==.☺.=="; break;
+                case 6: playerModel = "==.☺.=="; break;
+
+            }
         }
     }
 }
