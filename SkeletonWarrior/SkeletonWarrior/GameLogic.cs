@@ -28,18 +28,12 @@ namespace SkeletonWarrior
             set { this.playerColor = value; }
         }
 
-        public void MapLevelUp()
+        public void MapLevelUp(int playerColor)
         {
             //Runs when the background color changes.
             SetBackgroundColorOnLevelChange();
-            Enemy.SetEnemyColorOnLevelUp();
         }
         
-        public void LevelUpEnemies()
-        {
-            //Runs when the player kills enough enemies that they their color becomes darker.
-            Enemy.SetEnemyColorOnLevelUp();
-        }
 
         public static void SetCursorPosition(int x, int y)
         {

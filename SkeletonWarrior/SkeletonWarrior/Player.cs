@@ -12,7 +12,7 @@ namespace SkeletonWarrior
         private int movementSpeed;
         private int attackPower;
         private int firingSpeed;
-        private int playerLevel;
+        public int playerLevel;
         private int health;
         private string playerModel;
         private int x;
@@ -216,7 +216,7 @@ namespace SkeletonWarrior
                         break;
                 }
 
-
+                
                 //Runs when the player levels up.
                 player.SetPlayerColorOnLevelUp();
             }

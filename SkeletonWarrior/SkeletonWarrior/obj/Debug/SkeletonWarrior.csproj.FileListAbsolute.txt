@@ -10,3 +10,9 @@ D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\Skeleton
 D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
 D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
 D:\TerelikAcademy\game\SkeletonWarrior\SkeletonWarrrior\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe.config
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.exe
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\bin\Debug\SkeletonWarrior.pdb
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.csprojResolveAssemblyReference.cache
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.exe
+C:\Users\Pav\Desktop\C#\C#2\TeamProject\SkeletonWarrrior-master\SkeletonWarrior\SkeletonWarrior\obj\Debug\SkeletonWarrior.pdb
