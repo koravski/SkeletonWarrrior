@@ -8,7 +8,7 @@ namespace SkeletonWarrior
 {
     class Player
     {
-        
+        //some changes
         private int movementSpeed;
         private int attackPower;
         private int firingSpeed;
