@@ -306,6 +306,8 @@ ___----             ___------              \                 ___________        
                 "Kaloian Koravski",
             };
 
+            Array.Sort(arrayOfNames);
+
             Console.WriteLine();
             Console.WriteLine("{0}", endNames);
             foreach (var day in arrayOfNames)
