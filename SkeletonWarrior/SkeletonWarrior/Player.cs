@@ -84,7 +84,7 @@ namespace SkeletonWarrior
         {
             while (true)
             {
-                Thread.Sleep(20 - movementSpeed);
+                Thread.Sleep(200 - 50*movementSpeed);
 
                 if (Console.KeyAvailable)
                 {
@@ -195,7 +195,7 @@ namespace SkeletonWarrior
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
-                        player.movementSpeed++;
+                        //player.movementSpeed++;
                         player.playerLevel++;
                         player.Collisions = 0;
                         isMenuShow = false;
