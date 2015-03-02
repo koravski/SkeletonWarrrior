@@ -98,6 +98,20 @@ namespace SkeletonWarrior
                         }
                         moving = true;
                     }
+                    if (enemy.X == player.X && 
+                        enemy.Y == player.Y)
+                    {
+                        GameLogic.EnemyList.Remove(enemy);
+                        player.Health--;
+                        break;
+                    }
+                }
+                if (player.Health == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Clear();
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 - 5);
+                    Console.Write("YOU LOST.");
                 }
                 if (moving)
                 {

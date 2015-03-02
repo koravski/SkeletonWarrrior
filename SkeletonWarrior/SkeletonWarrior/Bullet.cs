@@ -5,9 +5,6 @@ namespace SkeletonWarrior
 {
     class Bullet
     {
-        
-   
-
         private int x;
         private int y;
         private int direction;
