@@ -46,6 +46,9 @@ namespace SkeletonWarrior
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
             player.PlayerModel = "=-.☺.-=";
 
+            Thread th = new Thread(player.MoveAndShoot);
+            th.Start();
+
             while (playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
@@ -53,7 +56,7 @@ namespace SkeletonWarrior
                 Console.ForegroundColor = Player.playerColor;
                 Console.Write(player.PlayerModel);
                 Console.ForegroundColor = background;
-                player.MoveAndShoot();
+                //player.MoveAndShoot();
                 player.ShootAndMoveBullets();
 
                 int determiner = enemySpawner.Next(1, 250);

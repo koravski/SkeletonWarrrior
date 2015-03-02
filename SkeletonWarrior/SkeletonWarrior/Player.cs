@@ -82,52 +82,58 @@ namespace SkeletonWarrior
 
         public void MoveAndShoot()
         {
-            if (Console.KeyAvailable)
+            while (true)
             {
-                ConsoleKeyInfo key = Console.ReadKey(true);
+                Thread.Sleep(20 - movementSpeed);
 
-                switch (key.Key)
+                if (Console.KeyAvailable)
                 {
-                    case ConsoleKey.W:
-                        this.y -= this.movementSpeed;
-                        break;
-                    case ConsoleKey.S:
-                        this.y += this.movementSpeed;
-                        break;
-                    case ConsoleKey.A:
-                        this.x -= this.movementSpeed;
-                        break;
-                    case ConsoleKey.D:
-                        this.x += this.movementSpeed;
-                        break;
-                    case ConsoleKey.UpArrow:
-                        if (y > 0)
-                        {
-                            GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1));
-                        }
-                        break;
-                    case ConsoleKey.DownArrow:
-                        if (y < Console.WindowHeight - 1)
-                        {
-                            GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2));
-                        }
-                        break;
-                    case ConsoleKey.RightArrow:
-                        if (x < Console.WindowWidth - 4)
-                        {
-                            GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4));
-                        }
-                        break;
-                    case ConsoleKey.LeftArrow:
-                        if (x > 2)
-                        {
-                            GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3));
-                        }
-                        break;
+                    ConsoleKeyInfo key = Console.ReadKey(true);
+
+                    switch (key.Key)
+                    {
+                        case ConsoleKey.W:
+                            this.y -= this.movementSpeed;
+                            break;
+                        case ConsoleKey.S:
+                            this.y += this.movementSpeed;
+                            break;
+                        case ConsoleKey.A:
+                            this.x -= this.movementSpeed;
+                            break;
+                        case ConsoleKey.D:
+                            this.x += this.movementSpeed;
+                            break;
+                        case ConsoleKey.UpArrow:
+                            if (y > 0)
+                            {
+                                GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1));
+                            }
+                            break;
+                        case ConsoleKey.DownArrow:
+                            if (y < Console.WindowHeight - 1)
+                            {
+                                GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2));
+                            }
+                            break;
+                        case ConsoleKey.RightArrow:
+                            if (x < Console.WindowWidth - 4)
+                            {
+                                GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4));
+                            }
+                            break;
+                        case ConsoleKey.LeftArrow:
+                            if (x > 2)
+                            {
+                                GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3));
+                            }
+                            break;
+                    }
+                    //   this.Collisions = 0;
+                    CheckWallCollision();
                 }
-             //   this.Collisions = 0;
-                CheckWallCollision();
             }
+            
         }
      
         public void ShootAndMoveBullets()
