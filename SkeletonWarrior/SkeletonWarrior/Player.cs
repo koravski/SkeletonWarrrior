@@ -82,7 +82,6 @@ namespace SkeletonWarrior
 
         public void MoveAndShoot()
         {
-            Thread.Sleep(20 - movementSpeed);
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
@@ -229,6 +228,7 @@ namespace SkeletonWarrior
 
         public void SetPlayerColorOnLevelUp()
         {
+            Thread.Sleep(20 - movementSpeed);
             //Runs when the player levels up and makes him darker.
             switch (playerLevel)
             {

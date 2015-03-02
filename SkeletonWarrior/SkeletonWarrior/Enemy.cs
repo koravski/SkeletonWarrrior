@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace SkeletonWarrior
 {
@@ -133,6 +134,7 @@ namespace SkeletonWarrior
 
         public void Shoot(Player player)
         {
+            Thread.Sleep(20);
             if (player.X - 3 <= this.x &&
                 player.X + 5 >= this.x &&
                 player.Y < this.y)
