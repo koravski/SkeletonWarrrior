@@ -193,10 +193,32 @@ namespace SkeletonWarrior
                     Console.WriteLine("1. Movement Speed");
                     Console.ForegroundColor = ConsoleColor.Green;
                 }
+                else
+                {
+                    Console.WriteLine("1. Movement Speed");
+                }
                 SetCursorPosition(1, 4);
-                Console.WriteLine("2. Attack Power" );
+                if (player.attackPower == 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("2. Attack Power");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.WriteLine("2. Attack Power");
+                }
                 SetCursorPosition(1, 5);
-                Console.WriteLine("3. Firing Speed");
+                if (player.firingSpeed == 10)
+                {
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.WriteLine("3. Firing Speed");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+                else
+                {
+                    Console.WriteLine("3. Firing Speed");
+                }
                 SetCursorPosition(1, 6);
                 Console.WriteLine("4. Lives");
                 Console.ForegroundColor = foreground;
@@ -259,6 +281,23 @@ namespace SkeletonWarrior
                 case 6: playerColor = ConsoleColor.DarkMagenta; break;
 
             }
+        }
+
+        public void PrintPlayerStats()
+        {
+            ConsoleColor foreground = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.SetCursorPosition(Console.WindowWidth - 22, 1);
+            Console.Write("STATS:");
+            Console.SetCursorPosition(Console.WindowWidth - 22, 3);
+            Console.Write("Movement Speed - " + movementSpeed);
+            Console.SetCursorPosition(Console.WindowWidth - 22, 4);
+            Console.Write("Attack Power - " + attackPower);
+            Console.SetCursorPosition(Console.WindowWidth - 22, 5);
+            Console.Write("Firing Speed - " + firingSpeed);
+            Console.SetCursorPosition(Console.WindowWidth - 22, 6);
+            Console.Write("Lives - " + health);
+            Console.ForegroundColor = foreground;
         }
     }
 }

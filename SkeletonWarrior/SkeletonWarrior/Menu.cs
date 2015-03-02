@@ -43,7 +43,7 @@ namespace SkeletonWarrior
 
             Console.Clear();
 
-            Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
+            Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 1, 20);
             player.PlayerModel = "=-.☺.-=";
 
             Thread th = new Thread(player.MoveAndShoot);
@@ -58,7 +58,7 @@ namespace SkeletonWarrior
                 Console.ForegroundColor = background;
                 //player.MoveAndShoot();
                 player.ShootAndMoveBullets();
-
+                player.PrintPlayerStats();
                 int determiner = enemySpawner.Next(1, 250);
 
                 if (determiner == 1)
