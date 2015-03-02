@@ -45,6 +45,9 @@ namespace SkeletonWarrior
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 5, 2, 1, 10);
             player.PlayerModel = "=-.☺.-=";
+
+            Thread t = new Thread(player.MoveAndShoot);
+            
             while (playing)
             {
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);

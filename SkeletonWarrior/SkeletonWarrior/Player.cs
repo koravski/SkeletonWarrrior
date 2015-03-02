@@ -82,6 +82,7 @@ namespace SkeletonWarrior
 
         public void MoveAndShoot()
         {
+            Thread.Sleep(20 - movementSpeed);
             if (Console.KeyAvailable)
             {
                 ConsoleKeyInfo key = Console.ReadKey(true);
