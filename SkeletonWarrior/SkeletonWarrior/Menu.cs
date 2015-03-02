@@ -30,7 +30,7 @@ namespace SkeletonWarrior
             {
                 ShowMenu();
                 HandleInput();
-                Thread.Sleep(50);
+                Thread.Sleep(75);
                 Console.Clear();
             }
         }
@@ -195,7 +195,7 @@ ___----             ___------              \                 ___________        
                                   |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
                                   |  \_((_(_)|/(_)
                                   \             (
-                                   \_____________)                                 ");
+                                   \_____________)");
 
             for (int i = 0; i < menu.GetLength(0); i++)
             {
