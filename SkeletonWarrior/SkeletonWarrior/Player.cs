@@ -93,16 +93,16 @@ namespace SkeletonWarrior
                     switch (key.Key)
                     {
                         case ConsoleKey.W:
-                            this.y -= this.movementSpeed;
+                            this.y -= 1;
                             break;
                         case ConsoleKey.S:
-                            this.y += this.movementSpeed;
+                            this.y += 1;
                             break;
                         case ConsoleKey.A:
-                            this.x -= this.movementSpeed;
+                            this.x -= 1;
                             break;
                         case ConsoleKey.D:
-                            this.x += this.movementSpeed;
+                            this.x += 1;
                             break;
                         case ConsoleKey.UpArrow:
                             if (y > 0)
@@ -195,7 +195,7 @@ namespace SkeletonWarrior
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
-                        //player.movementSpeed++;
+                        player.movementSpeed++;
                         player.playerLevel++;
                         player.Collisions = 0;
                         isMenuShow = false;
