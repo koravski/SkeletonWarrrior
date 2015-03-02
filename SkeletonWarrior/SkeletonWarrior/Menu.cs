@@ -266,7 +266,7 @@ ___----             ___------              \                 ___________        
             {
                 using (var reader1 = new StreamReader(@"..\..\successful.txt"))
                 {
-                
+
                     int successCount = 1;
                     while ((line1 = reader1.ReadLine()) != null)
                     {
@@ -282,7 +282,7 @@ ___----             ___------              \                 ___________        
             {
                 Console.WriteLine("Can't load successfully attempts database!");
             }
-            
+
             Console.ReadKey();
             BackToMenu();
         }
@@ -293,9 +293,26 @@ ___----             ___------              \                 ___________        
         private static void ShowCredits()
         {
             Console.Clear();
-            //TODO: show text
-            Console.WriteLine("Credits:");
-            
+            string endNames = "The participants in \"Skeleton Warrior\" game project:\n";
+
+            string[] arrayOfNames = new string[]{
+                "Nikolay Karagyozov",
+                "Ivailo Kolarov",
+                "Pavlina Dragneva",
+                "Ivan Donchev",
+                "Vasil Todorov",
+                "Krasimir Georgiev",
+                "Stefan  Dimitrov",
+                "Kaloian Koravski",
+            };
+
+            Console.WriteLine();
+            Console.WriteLine("{0}", endNames);
+            foreach (var day in arrayOfNames)
+            {
+                Console.WriteLine("{0}\n", day);
+            }
+
             Console.ReadKey();
             BackToMenu();
         }
