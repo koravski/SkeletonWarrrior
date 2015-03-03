@@ -64,13 +64,35 @@ namespace SkeletonWarrior
         }
         public static void Show()
         {
+            ShowLogo();
             while (true)
             {
                 ShowMenu();
                 HandleInput();
                 Thread.Sleep(75);
-                Console.Clear();
             }
+        }
+
+        private static void ShowLogo()
+        {
+            Console.Write(
+@"
+                 _________-----_____                  
+       _____------           __      ----_            
+___----             ___------              \                 ___________          .__          __                 
+   ----________        ----                 \               /   _____/  | __ ____ |  |   _____/  |_  ____   ____  
+               -----__    |             _____)              \_____  \|  |/ // __ \|  | _/ __ \   __\/  _ \ /    \ 
+                    __-                /     \              /        \    <\  ___/|  |_\  ___/|  | (  <_> )   |  \
+        _______-----    ___--          \    /)\            /_______  /__|_ \\___  >____/\___  >__|  \____/|___|  /
+  ------_______      ---____            \__/  /                    \/     \/    \/          \/                 \/ 
+               -----__    \ --    _          /\             __      __                     .__              
+                      --__--__     \_____/   \_/\          /  \    /  \_____ ______________|__| ___________ 
+                              ----|   /          |         \   \/\/   /\__  \\_  __ \_  __ \  |/  _ \_  __ \
+                                  |  |___________|          \        /  / __ \|  | \/|  | \/  (  <_> )  | \/
+                                  |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
+                                  |  \_((_(_)|/(_)
+                                  \             (
+                                   \_____________)");
         }
         public static void StartGame()
         {
@@ -85,7 +107,7 @@ namespace SkeletonWarrior
             Console.Clear();
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 20);
-            player.PlayerModel = "=-.☺.-=";
+            player.PlayerModel = "-.☺.-";
             Player.PlayerLevel = 1;
             Thread moveThread = new Thread(player.MoveAndShoot);
             moveThread.Start();
@@ -317,30 +339,11 @@ namespace SkeletonWarrior
 
         public static void ShowMenu()
         {
-            Console.Write(
-@"
-                 _________-----_____                  
-       _____------           __      ----_            
-___----             ___------              \                 ___________          .__          __                 
-   ----________        ----                 \               /   _____/  | __ ____ |  |   _____/  |_  ____   ____  
-               -----__    |             _____)              \_____  \|  |/ // __ \|  | _/ __ \   __\/  _ \ /    \ 
-                    __-                /     \              /        \    <\  ___/|  |_\  ___/|  | (  <_> )   |  \
-        _______-----    ___--          \    /)\            /_______  /__|_ \\___  >____/\___  >__|  \____/|___|  /
-  ------_______      ---____            \__/  /                    \/     \/    \/          \/                 \/ 
-               -----__    \ --    _          /\             __      __                     .__              
-                      --__--__     \_____/   \_/\          /  \    /  \_____ ______________|__| ___________ 
-                              ----|   /          |         \   \/\/   /\__  \\_  __ \_  __ \  |/  _ \_  __ \
-                                  |  |___________|          \        /  / __ \|  | \/|  | \/  (  <_> )  | \/
-                                  |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
-                                  |  \_((_(_)|/(_)
-                                  \             (
-                                   \_____________)");
-
             for (int i = 0; i < menu.GetLength(0); i++)
             {
                 if (currentSelection == i)
                 {
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2 - selector.Length, Console.WindowHeight / 2 + 2 * i);
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2 - selector.Length + 1, Console.WindowHeight / 2 + 2 * i);
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Write(selector + menu[i]);
                     Console.ForegroundColor = ConsoleColor.White;
@@ -348,7 +351,7 @@ ___----             ___------              \                 ___________        
                 else
                 {
                     Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2, Console.WindowHeight / 2 + 2 * i);
-                    Console.Write(menu[i]);
+                    Console.Write(" " + menu[i]);
                 }
             }
         }
@@ -533,6 +536,7 @@ ___----             ___------              \                 ___________        
         private static void BackToMenu()
         {
             Console.Clear();
+            ShowLogo();
             ShowMenu();
         }
     }
