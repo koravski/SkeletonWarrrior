@@ -92,15 +92,17 @@ namespace SkeletonWarrior
             ConsoleColor enemyColor = ConsoleColor.Red;
             switch (playerColor)
             {
-                case ConsoleColor.White: enemyColor = ConsoleColor.Magenta; return enemyColor;
-                case ConsoleColor.Blue: enemyColor = ConsoleColor.Yellow; return enemyColor;
-                case ConsoleColor.Red: enemyColor = ConsoleColor.Green; return enemyColor;
-                case ConsoleColor.Green: enemyColor = ConsoleColor.Cyan; return enemyColor;
-                case ConsoleColor.DarkCyan: enemyColor = ConsoleColor.White; return enemyColor;
-                case ConsoleColor.Yellow: enemyColor = ConsoleColor.DarkCyan; return enemyColor;
-                case ConsoleColor.DarkMagenta: enemyColor = ConsoleColor.Blue; return enemyColor;
+                case ConsoleColor.White: enemyColor = ConsoleColor.Magenta; break; ;
+                case ConsoleColor.Blue: enemyColor = ConsoleColor.Yellow; break;
+                case ConsoleColor.Red: enemyColor = ConsoleColor.Green; break;
+                case ConsoleColor.Green: enemyColor = ConsoleColor.Cyan; break;
+                case ConsoleColor.DarkCyan: enemyColor = ConsoleColor.White; break;
+                case ConsoleColor.Yellow: enemyColor = ConsoleColor.DarkCyan; break;
+                case ConsoleColor.DarkMagenta: enemyColor = ConsoleColor.Blue; break;
                 default: return enemyColor;
             }
+
+            return enemyColor;
         }
         public void WriteEnemyOnScreen()
         {
