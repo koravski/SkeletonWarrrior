@@ -160,9 +160,9 @@ namespace SkeletonWarrior
             }
         }
 
-        public static void GetBoss(string bossFile)
+        public static void GetBoss()
         {
-            ReadBoss(bossFile);
+            ReadBoss();
 
             Console.ForegroundColor = BossColor;
 
@@ -177,7 +177,7 @@ namespace SkeletonWarrior
             }
         }
 
-        private static void ReadBoss(string bossFile)
+        private static void ReadBoss()
         {
             try
             {
