@@ -187,7 +187,7 @@ namespace SkeletonWarrior
             }
         }
 
-        public static void UpdateStatsOnLevelUp(Player player)
+        public void UpdateStatsOnLevelUp()
         {
             bool isMenuShow = true;
             while (isMenuShow)
@@ -201,7 +201,7 @@ namespace SkeletonWarrior
                 SetCursorPosition(1, 2);
                 Console.WriteLine("Pick ability: ");
                 SetCursorPosition(1, 3);
-                if (player.movementSpeed == 10)
+                if (this.movementSpeed == 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("1. Movement Speed");
@@ -212,7 +212,7 @@ namespace SkeletonWarrior
                     Console.WriteLine("1. Movement Speed");
                 }
                 SetCursorPosition(1, 4);
-                if (player.attackPower == 10)
+                if (this.attackPower == 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("2. Attack Power");
@@ -223,7 +223,7 @@ namespace SkeletonWarrior
                     Console.WriteLine("2. Attack Power");
                 }
                 SetCursorPosition(1, 5);
-                if (player.firingSpeed == 10)
+                if (this.firingSpeed == 10)
                 {
                     Console.ForegroundColor = ConsoleColor.Gray;
                     Console.WriteLine("3. Firing Speed");
@@ -245,36 +245,35 @@ namespace SkeletonWarrior
                 switch (key.Key)
                 {
                     case ConsoleKey.D1:
-                        player.movementSpeed++;
+                        this.movementSpeed++;
                         Player.playerLevel++;
-                        player.Collisions = 0;
+                        this.Collisions = 0;
                         isMenuShow = false;
-                        break;   // Do something 
+                        break;
                     case ConsoleKey.D2:
-                        player.attackPower++;
+                        this.attackPower++;
                         Player.playerLevel++;
-                        player.Collisions = 0;
+                        this.Collisions = 0;
                         isMenuShow = false;
-                        break;   // Do something 
+                        break;
                     case ConsoleKey.D3:
-                        player.firingSpeed++;
+                        this.firingSpeed++;
                         Player.playerLevel++;
-                        player.Collisions = 0;
+                        this.Collisions = 0;
                         isMenuShow = false;
-                        break;   // Do something 
+                        break;
                     case ConsoleKey.D4:
-                        player.health += 10;
+                        this.health += 10;
                         Player.playerLevel++;
-                        player.Collisions = 0;
+                        this.Collisions = 0;
                         isMenuShow = false;
-                        break;   // Do something 
+                        break;
                     default:
                         break;
                 }
-
                 
                 //Runs when the player levels up.
-                player.SetPlayerColorOnLevelUp();
+                this.SetPlayerColorOnLevelUp();
             }
         }
         public static void SetCursorPosition(int x, int y)

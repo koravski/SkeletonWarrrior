@@ -19,8 +19,8 @@ namespace SkeletonWarrior
         private static Random enemySpawner = new Random();
         private static string selector = ">";
         private static int mover = 0;
-        private static string failedAttemptsPath = "";
-        private static string successAttemptsPath = "";
+        private static string failedAttemptsPath = "failed.txt";
+        private static string successAttemptsPath = "successful.txt";
 
         public static int Mover
         {
@@ -182,7 +182,7 @@ namespace SkeletonWarrior
 
                 if (player.Collisions == 5)
                 {
-                    Player.UpdateStatsOnLevelUp(player);
+                    player.UpdateStatsOnLevelUp();
                 }
                 //Enemy.GetBoss(Enemy.GetBossFile);
                 Thread.Sleep(20);
@@ -190,6 +190,10 @@ namespace SkeletonWarrior
             }
         }
  
+        /// <summary>
+        /// Method storing failed attempts into database file
+        /// </summary>
+        /// <param name="player"></param>
         private static void SetScoreToFailedDatabase(Player player)
         {
             try
@@ -335,7 +339,6 @@ ___----             ___------              \                 ___________        
             Console.Clear();
             int counter = 0;
             string line;
-            //TODO: show leaders board;
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 6);
