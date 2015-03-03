@@ -39,12 +39,7 @@ namespace SkeletonWarrior
         }
         public static void StartGame()
         {
-            Console.Clear();
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
-            Console.Write("Enter character name: ");
-            characterName = Console.ReadLine();
-
-            Console.Clear();
+            SetPlayerName();
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 20);
             player.PlayerModel = "-.☺.-";
@@ -188,6 +183,18 @@ namespace SkeletonWarrior
                 Thread.Sleep(20);
                 Console.Clear();
             }
+        }
+
+        /// <summary>
+        /// Method setting user name into global static variable
+        /// </summary>
+        private static void SetPlayerName()
+        {
+            Console.Clear();
+            Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
+            Console.Write("Enter character name: ");
+            characterName = Console.ReadLine();
+            Console.Clear();
         }
  
         /// <summary>
