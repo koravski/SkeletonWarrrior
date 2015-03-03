@@ -19,6 +19,8 @@ namespace SkeletonWarrior
         private static Random enemySpawner = new Random();
         private static string selector = ">";
         private static int mover = 0;
+        private static string failedAttemptsPath = "";
+        private static string successAttemptsPath = "";
 
         public static int Mover
         {
@@ -192,7 +194,7 @@ namespace SkeletonWarrior
         {
             try
             {
-                using (StreamWriter sw = new StreamWriter(@"..\..\failed.txt", true))
+                using (StreamWriter sw = new StreamWriter(failedAttemptsPath, true))
                 {
                     sw.WriteLine(characterName + "\t\t" + Player.Score);
                 }
@@ -340,7 +342,7 @@ ___----             ___------              \                 ___________        
             Console.WriteLine("Failed Attempts:");
             try
             {
-                using (var reader = new StreamReader(@"..\..\failed.txt"))
+                using (var reader = new StreamReader(failedAttemptsPath))
                 {
                     int failedCount = 1;
                     Console.WriteLine();
@@ -366,7 +368,7 @@ ___----             ___------              \                 ___________        
             Console.WriteLine("Successful Attempts:");
             try
             {
-                using (var reader1 = new StreamReader(@"..\..\successful.txt"))
+                using (var reader1 = new StreamReader(successAttemptsPath))
                 {
                     int successCount = 1;
                     while ((line1 = reader1.ReadLine()) != null)
