@@ -29,12 +29,12 @@ namespace SkeletonWarrior
         }
         public static void Show()
         {
+            ShowLogo();
             while (true)
             {
                 ShowMenu();
                 HandleInput();
                 Thread.Sleep(75);
-                Console.Clear();
             }
         }
         public static void StartGame()
@@ -223,7 +223,7 @@ namespace SkeletonWarrior
         }
 
         /// <summary>
-        /// Show main menu
+        /// Method for handling user menu
         /// </summary>
         private static void HandleInput()
         {
@@ -279,25 +279,6 @@ namespace SkeletonWarrior
 
         public static void ShowMenu()
         {
-            Console.Write(
-@"
-                 _________-----_____                  
-       _____------           __      ----_            
-___----             ___------              \                 ___________          .__          __                 
-   ----________        ----                 \               /   _____/  | __ ____ |  |   _____/  |_  ____   ____  
-               -----__    |             _____)              \_____  \|  |/ // __ \|  | _/ __ \   __\/  _ \ /    \ 
-                    __-                /     \              /        \    <\  ___/|  |_\  ___/|  | (  <_> )   |  \
-        _______-----    ___--          \    /)\            /_______  /__|_ \\___  >____/\___  >__|  \____/|___|  /
-  ------_______      ---____            \__/  /                    \/     \/    \/          \/                 \/ 
-               -----__    \ --    _          /\             __      __                     .__              
-                      --__--__     \_____/   \_/\          /  \    /  \_____ ______________|__| ___________ 
-                              ----|   /          |         \   \/\/   /\__  \\_  __ \_  __ \  |/  _ \_  __ \
-                                  |  |___________|          \        /  / __ \|  | \/|  | \/  (  <_> )  | \/
-                                  |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
-                                  |  \_((_(_)|/(_)
-                                  \             (
-                                   \_____________)");
-
             for (int i = 0; i < menu.GetLength(0); i++)
             {
                 if (currentSelection == i)
@@ -309,8 +290,8 @@ ___----             ___------              \                 ___________        
                 }
                 else
                 {
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2, Console.WindowHeight / 2 + 2 * i);
-                    Console.Write(menu[i]);
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - menu[i].Length / 2 - 1, Console.WindowHeight / 2 + 2 * i);
+                    Console.Write(" " + menu[i]);
                 }
             }
         }
@@ -435,7 +416,30 @@ ___----             ___------              \                 ___________        
         private static void BackToMenu()
         {
             Console.Clear();
+            ShowLogo();
             ShowMenu();
+        }
+
+        internal static void ShowLogo()
+        {
+            Console.Write(
+@"
+                 _________-----_____                  
+       _____------           __      ----_            
+___----             ___------              \                 ___________          .__          __                 
+   ----________        ----                 \               /   _____/  | __ ____ |  |   _____/  |_  ____   ____  
+               -----__    |             _____)              \_____  \|  |/ // __ \|  | _/ __ \   __\/  _ \ /    \ 
+                    __-                /     \              /        \    <\  ___/|  |_\  ___/|  | (  <_> )   |  \
+        _______-----    ___--          \    /)\            /_______  /__|_ \\___  >____/\___  >__|  \____/|___|  /
+  ------_______      ---____            \__/  /                    \/     \/    \/          \/                 \/ 
+               -----__    \ --    _          /\             __      __                     .__              
+                      --__--__     \_____/   \_/\          /  \    /  \_____ ______________|__| ___________ 
+                              ----|   /          |         \   \/\/   /\__  \\_  __ \_  __ \  |/  _ \_  __ \
+                                  |  |___________|          \        /  / __ \|  | \/|  | \/  (  <_> )  | \/
+                                  |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
+                                  |  \_((_(_)|/(_)
+                                  \             (
+                                   \_____________)");
         }
     }
 }
