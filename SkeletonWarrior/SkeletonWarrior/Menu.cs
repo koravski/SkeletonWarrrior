@@ -415,9 +415,13 @@ ___----             ___------              \                 ___________        
             Array.Sort(arrayOfNames);
 
             Console.WriteLine();
+            Console.SetCursorPosition(Console.BufferWidth - 90, Console.BufferHeight - 38 );
             Console.WriteLine("{0}", endNames);
+            int nextline = 5;
             foreach (var day in arrayOfNames)
             {
+                Console.SetCursorPosition(Console.BufferWidth - 70 , Console.BufferHeight - 40+nextline);
+                nextline++;
                 Console.WriteLine("{0}\n", day);
             }
 
