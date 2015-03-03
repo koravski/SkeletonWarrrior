@@ -106,19 +106,19 @@ namespace SkeletonWarrior
 
                 if (determiner == 1)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '0'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '0')); //normal
                 }
                 else if (determiner == 2)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '*'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '*')); // shoots
                 }                                      
                 else if (determiner == 3)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '='));
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 2, '=')); // hits harder
                 }                                      
                 else if (determiner == 4)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&')); //tank
                 }
 
                 if (GameLogic.EnemyList.Count > 0)
