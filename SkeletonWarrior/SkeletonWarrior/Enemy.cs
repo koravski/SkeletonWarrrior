@@ -21,17 +21,16 @@ namespace SkeletonWarrior
         private int movementSpeed;
         private int attackPower;
         private int firingSpeed;
-        private int enemyLevel;
+        private static int enemyLevel = 1;
         private int health;
         private char enemyType;
         //public ConsoleColor enemyColor = ConsoleColor.Red;
 
-        public Enemy(int movementSpeed, int attackPower, int firingSpeed, int enemyLevel, int health, char enemyType)
+        public Enemy(int movementSpeed, int attackPower, int firingSpeed, int health, char enemyType)
         {
             this.movementSpeed = movementSpeed;
             this.attackPower = attackPower;
             this.firingSpeed = firingSpeed;
-            this.enemyLevel = enemyLevel;
             this.health = health;
             this.enemyType = enemyType;
             PickEnemyCoords();
@@ -68,7 +67,7 @@ namespace SkeletonWarrior
             get { return firingSpeed; }
             set { firingSpeed = value; }
         }
-        public int EntityLevel
+        public static int EnemyLevel
         {
             get { return enemyLevel; }
             set { enemyLevel = value; }

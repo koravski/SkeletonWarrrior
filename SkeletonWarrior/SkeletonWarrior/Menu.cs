@@ -44,14 +44,15 @@ namespace SkeletonWarrior
 
             Console.Clear();
 
-            Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 1, 20);
+            Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 20);
             player.PlayerModel = "=-.☺.-=";
-
+            Player.PlayerLevel = 1;
             Thread moveThread = new Thread(player.MoveAndShoot);
             moveThread.Start();
 
             Thread shootThread = new Thread(player.ShootAndMoveBullets);
             shootThread.Start();
+            //ResetGame(); //TODO: FIX THIS
             while (playing)
             {
                 player.CheckWallCollision();
@@ -67,19 +68,19 @@ namespace SkeletonWarrior
 
                 if (determiner == 1)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '0'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '0'));
                 }
                 else if (determiner == 2)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '*'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '*'));
                 }
                 else if (determiner == 3)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '='));
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '='));
                 }
                 else if (determiner == 4)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, 5, '&'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '&'));
                 }
 
                 if (GameLogic.EnemyList.Count > 0)
@@ -116,8 +117,22 @@ namespace SkeletonWarrior
                     Console.Clear();
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 10);
                     Console.Write("YOU LOST.");
-                    Console.ReadKey();
-                    break;
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 8);
+                    Console.Write("SCORE: " + Player.Score);
+                    bool gameQuit = false;
+                    while (true)
+                    {
+                        ConsoleKeyInfo key = Console.ReadKey(true);
+                        if (key.Key == ConsoleKey.Enter)
+                        {
+                            gameQuit = true;
+                            break;
+                        }
+                    }
+                    if (gameQuit)
+                    {
+                        break;
+                    }
                 }
                 if (moving)
                 {
@@ -129,8 +144,8 @@ namespace SkeletonWarrior
                     {
                         break;
                     }
-                    bullet.WallCollisionChecker();
-                    bullet.WriteBulletOnScreen();
+                    bullet.PrintBullets();
+                    //bullet.WriteBulletOnScreen();
 
                     if ((bullet.Friendly == false) &&
                         (player.X - 3 <= bullet.X &&
@@ -138,24 +153,24 @@ namespace SkeletonWarrior
                         (player.Y <= bullet.Y &&
                          player.Y >= bullet.Y))
                     {
-                        int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
-                        GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                        //int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
+                        GameLogic.ShotBullets.Remove(bullet);
                         player.Health--;
                         break;
                     }
                     bool removed = false;
                     if (bullet.Friendly == true)
                     {
-                        foreach (var enemyBullet in GameLogic.ShotBullets)
+                        foreach (var enemyBullet in GameLogic.ShotBullets.ToList())
                         {
                             if ((enemyBullet.Friendly == false) &&
                                 bullet.X == enemyBullet.X &&
                                 bullet.Y == enemyBullet.Y)
                             {
-                                int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
-                                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
-                                indexOfBullet = GameLogic.ShotBullets.IndexOf(enemyBullet);
-                                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                                //int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
+                                GameLogic.ShotBullets.Remove(bullet);
+                                //indexOfBullet = GameLogic.ShotBullets.IndexOf(enemyBullet);
+                                GameLogic.ShotBullets.Remove(enemyBullet);
                                 removed = true;
                                 break;
                             }
@@ -176,6 +191,15 @@ namespace SkeletonWarrior
                 Thread.Sleep(20);
                 Console.Clear();
             }
+        }
+
+        private static void ResetGame()
+        {
+            GameLogic.EnemyList = new System.Collections.Generic.List<Enemy>();
+            GameLogic.ShotBullets = new System.Collections.Generic.List<Bullet>();
+            Player.Score = 0;
+            Player.PlayerLevel = 1;
+            Enemy.EnemyLevel = 1;
         }
 
         /// <summary>
