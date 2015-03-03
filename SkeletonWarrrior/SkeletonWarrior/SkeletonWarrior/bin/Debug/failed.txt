@@ -8,3 +8,5 @@ f		2
 dsa		0
 x		18
 dsaasd		3
+Steff		2
+Ivvaaaa		0

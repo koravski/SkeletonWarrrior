@@ -11,41 +11,6 @@ namespace SkeletonWarrior
         /// <summary>
         /// Main menu
         /// </summary>
-        #region musicForTheCredits
-        static void Music()
-        {
-            Console.Beep(440, 500);
-            Console.Beep(440, 500);
-            Console.Beep(440, 500);
-            Console.Beep(349, 350);
-            Console.Beep(523, 150);
-            Console.Beep(440, 500);
-            Console.Beep(349, 350);
-            Console.Beep(523, 150);
-            Console.Beep(440, 1000);
-            for (int i = 0; i < 2; i++)
-            {
-                Console.Beep(659, 500);
-                Console.Beep(659, 500);
-                Console.Beep(659, 500);
-                Console.Beep(698, 350);
-                Console.Beep(523, 150);
-                Console.Beep(415, 500);
-                Console.Beep(349, 350);
-                Console.Beep(523, 150);
-                Console.Beep(440, 1000);
-            }
-
-            Console.ReadKey();
-            BackToMenu();
-            
-        }
-        static void Kurzor(int j)
-        {
-            Console.SetCursorPosition(2 * j + 2, 0);
-        }
-        #endregion
-        
         private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
 
         private static int currentSelection = 0;
@@ -442,8 +407,6 @@ ___----             ___------              \                 ___________        
             Thread skull = new Thread(Music);
             skull.Start();
 
-            //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
-
             StreamReader szarvas = new StreamReader(@"..\..\skull.txt");
             string szarvasstring = szarvas.ReadToEnd();
             StreamReader szarvas2 = new StreamReader(@"..\..\skull2.txt");
@@ -468,11 +431,8 @@ ___----             ___------              \                 ___________        
                 k++;
             }
 
-
-
             for (int j = 0; j < 13; j++)
             {
-
                 Console.Write(szarvasstring.Substring(0, i - 1));
                 Console.Write(szarvasstring[i]);
                 Console.ForegroundColor = ConsoleColor.White;
@@ -491,11 +451,9 @@ ___----             ___------              \                 ___________        
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(szarvasstring2.Substring(k + 1));
 
-
                 Thread.Sleep(500);
 
                 Console.Clear();
-
 
             }
 
@@ -503,29 +461,7 @@ ___----             ___------              \                 ___________        
             Console.Write(szarvasstring[i]);
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(szarvasstring.Substring(i + 1));
-            //Console.Clear();
-           //string endNames = "The participants in \"Skeleton Warrior\" game project:\n";
-           //
-           //string[] arrayOfNames = new string[]{
-           //    "Nikolay Karagyozov",
-           //    "Ivailo Kolarov",
-           //    "Pavlina Dragneva",
-           //    "Ivan Donchev",
-           //    "Vasil Todorov",
-           //    "Krasimir Georgiev",
-           //    "Stefan  Dimitrov",
-           //    "Kaloian Koravski",
-           //};
-           //
-           //Array.Sort(arrayOfNames);
-           //
-           //Console.WriteLine();
-           //Console.WriteLine("{0}", endNames);
-           //foreach (var day in arrayOfNames)
-           //{
-           //    Console.WriteLine("{0}\n", day);
-           //}
-           //
+            
             Console.ReadKey();
             BackToMenu();
         }
@@ -539,5 +475,40 @@ ___----             ___------              \                 ___________        
             ShowLogo();
             ShowMenu();
         }
+
+        #region musicForTheCredits
+        static void Music()
+        {
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 500);
+            Console.Beep(349, 350);
+            Console.Beep(523, 150);
+            Console.Beep(440, 1000);
+            for (int i = 0; i < 2; i++)
+            {
+                Console.Beep(659, 500);
+                Console.Beep(659, 500);
+                Console.Beep(659, 500);
+                Console.Beep(698, 350);
+                Console.Beep(523, 150);
+                Console.Beep(415, 500);
+                Console.Beep(349, 350);
+                Console.Beep(523, 150);
+                Console.Beep(440, 1000);
+            }
+
+            Console.ReadKey();
+            BackToMenu();
+
+        }
+        static void Kurzor(int j)
+        {
+            Console.SetCursorPosition(2 * j + 2, 0);
+        }
+        #endregion
     }
 }
