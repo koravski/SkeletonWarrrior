@@ -71,16 +71,6 @@ namespace SkeletonWarrior
         }
         public void UpdateBullet()
         {
-            bool forRemoval = false;
-
-            if ((this.y < 1) ||
-                (this.y > Console.WindowHeight - 2) ||
-                (this.x < 1) ||
-                (this.x >= Console.WindowWidth - 2))
-            {
-                forRemoval = true;
-            }
-
             if ( direction == 1 ) // if bullet is going up
 	        {
                 this.y--;
@@ -97,11 +87,26 @@ namespace SkeletonWarrior
 	        {
                 this.x++;
 	        }
+        }
+
+        internal void WallCollisionChecker()
+        {
+            bool forRemoval = false;
+
+            if ((this.y < 1) ||
+                (this.y > Console.WindowHeight - 2) ||
+                (this.x < 1) ||
+                (this.x >= Console.WindowWidth - 2))
+            {
+                forRemoval = true;
+            }
+
             if (forRemoval)
             {
                 int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
                 GameLogic.ShotBullets.RemoveAt(indexOfBullet);
             }
+
         }
     }
 }

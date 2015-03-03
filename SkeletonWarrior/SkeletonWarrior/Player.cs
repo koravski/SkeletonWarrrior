@@ -137,7 +137,6 @@ namespace SkeletonWarrior
                             break;
                     }
                     //   this.Collisions = 0;
-                    CheckWallCollision();
                 }
             }
             
@@ -145,24 +144,27 @@ namespace SkeletonWarrior
      
         public void ShootAndMoveBullets()
         {
-            foreach (var element in GameLogic.ShotBullets.ToList())
+            while (true)
             {
-                element.WriteBulletOnScreen();
-                element.UpdateBullet();
+                foreach (var element in GameLogic.ShotBullets.ToList())
+                {
+                    element.UpdateBullet();
+                }
+                if (firingSpeed <= 10)
+                {
+                    Thread.Sleep(200 - 18 * firingSpeed);
+                }
+                else
+                {
+                    Thread.Sleep(20);
+                }
             }
-            //if (firingSpeed <= 10)
-            //{
-            //    Thread.Sleep(200 - 18 * firingSpeed);
-            //}
-            //else
-            //{
-            //    Thread.Sleep(20);
-            //}
+            
         }
         
-        private void CheckWallCollision()
+        public void CheckWallCollision()
         {
-            if (this.x <= movementSpeed)
+            if (this.x <= playerModel.Length - 4)
             {
                 this.x = Console.WindowWidth - 1 - playerModel.Length;
             }
@@ -171,11 +173,11 @@ namespace SkeletonWarrior
                 this.x = playerModel.Length / 2 + 1;
             }
 
-            if (this.y < 0)
+            if (this.y <= 0)
             {
                 this.y = Console.WindowHeight - 1;
             }
-            else if (this.y >= Console.WindowHeight)
+            else if (this.y >= Console.WindowHeight - 1)
             {
                 this.y = 0;
             }
@@ -280,13 +282,26 @@ namespace SkeletonWarrior
             //Runs when the player levels up and makes him darker.
             switch (playerLevel)
             {
-                case 0: playerColor = ConsoleColor.White; break;
-                case 1: playerColor = ConsoleColor.Blue; break;
-                case 2: playerColor = ConsoleColor.Red; break;
-                case 3: playerColor = ConsoleColor.Green; break;
-                case 4: playerColor = ConsoleColor.DarkCyan; break;
-                case 5: playerColor = ConsoleColor.Yellow; break;
-                case 6: playerColor = ConsoleColor.DarkMagenta; break;
+                case 0: 
+                    playerColor = ConsoleColor.White; break;
+                case 1:
+                case 2: 
+                    playerColor = ConsoleColor.Blue; break;
+                case 3: 
+                    playerColor = ConsoleColor.Red; break;
+                case 4: 
+                    playerColor = ConsoleColor.Green; break;
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    playerColor = ConsoleColor.DarkCyan; break;
+                case 9:
+                case 10:
+                case 11:
+                    playerColor = ConsoleColor.Yellow; break;
+                default: 
+                    playerColor = ConsoleColor.DarkMagenta; break;
 
             }
         }

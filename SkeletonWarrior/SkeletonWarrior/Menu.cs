@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Threading;
+using System.Linq;
 
 namespace SkeletonWarrior
 {
@@ -49,15 +50,18 @@ namespace SkeletonWarrior
             Thread moveThread = new Thread(player.MoveAndShoot);
             moveThread.Start();
 
+            Thread shootThread = new Thread(player.ShootAndMoveBullets);
+            shootThread.Start();
             while (playing)
             {
+                player.CheckWallCollision();
                 Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
-                ConsoleColor background = Console.ForegroundColor;
+                ConsoleColor foreground = Console.ForegroundColor;
                 Console.ForegroundColor = Player.playerColor;
                 Console.Write(player.PlayerModel);
-                Console.ForegroundColor = background;
+                Console.ForegroundColor = foreground;
                 //player.MoveAndShoot();
-                player.ShootAndMoveBullets();
+                //player.ShootAndMoveBullets();
                 player.PrintPlayerStats();
                 int determiner = enemySpawner.Next(1, 250);
 
@@ -119,12 +123,14 @@ namespace SkeletonWarrior
                 {
                     mover = 0;
                 }
-                foreach (var bullet in GameLogic.ShotBullets)
+                foreach (var bullet in GameLogic.ShotBullets.ToList())
                 {
                     if (bullet.BulletCollisionCheck(player))
                     {
                         break;
                     }
+                    bullet.WallCollisionChecker();
+                    bullet.WriteBulletOnScreen();
 
                     if ((bullet.Friendly == false) &&
                         (player.X - 3 <= bullet.X &&
