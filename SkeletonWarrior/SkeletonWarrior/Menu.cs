@@ -184,7 +184,7 @@ namespace SkeletonWarrior
                 {
                     player.UpdateStatsOnLevelUp();
                 }
-                //Enemy.GetBoss(Enemy.GetBossFile);
+                //Enemy.GetBoss();
                 Thread.Sleep(20);
                 Console.Clear();
             }
