@@ -17,10 +17,10 @@ namespace SkeletonWarrior
         private static string characterName;
         private static bool playing = true;
         private static Random enemySpawner = new Random();
-        private static string selector = ">";
+        private static readonly string selector = ">";
         private static int mover = 0;
-        private static string failedAttemptsPath = "failed.txt";
-        private static string successAttemptsPath = "successful.txt";
+        private static readonly string failedAttemptsPath = "failed.txt";
+        private static readonly string successAttemptsPath = "successful.txt";
 
         public static int Mover
         {

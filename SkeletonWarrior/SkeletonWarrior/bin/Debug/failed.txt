@@ -1,2 +1,4 @@
 DDD		3
 Ds		2
+Steff		18
+asd		4
