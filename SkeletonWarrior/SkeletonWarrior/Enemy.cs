@@ -92,7 +92,7 @@ namespace SkeletonWarrior
             ConsoleColor enemyColor = ConsoleColor.Red;
             switch (playerColor)
             {
-                case ConsoleColor.White: enemyColor = ConsoleColor.Magenta; break; ;
+                case ConsoleColor.White: enemyColor = ConsoleColor.Magenta; break;
                 case ConsoleColor.Blue: enemyColor = ConsoleColor.Yellow; break;
                 case ConsoleColor.Red: enemyColor = ConsoleColor.Green; break;
                 case ConsoleColor.Green: enemyColor = ConsoleColor.Cyan; break;
