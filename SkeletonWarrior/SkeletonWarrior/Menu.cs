@@ -47,7 +47,7 @@ namespace SkeletonWarrior
             Console.Clear();
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 20);
-            player.PlayerModel = "=-.☺.-=";
+            player.PlayerModel = "-.☺.-";
             Player.PlayerLevel = 1;
             Thread moveThread = new Thread(player.MoveAndShoot);
             moveThread.Start();

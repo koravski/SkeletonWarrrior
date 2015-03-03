@@ -309,6 +309,8 @@ namespace SkeletonWarrior
                     playerColor = ConsoleColor.DarkMagenta; break;
 
             }
+
+            SetPlayerModelOnLevelUP();
         }
 
         public void PrintPlayerStats()
@@ -333,6 +335,20 @@ namespace SkeletonWarrior
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.Write("SCORE: " + score);
             Console.ForegroundColor = foreground;
+        }
+
+        public void SetPlayerModelOnLevelUP()
+        {
+            switch (playerLevel)
+            {
+                case 0: playerModel = "-.☺.-"; break;
+                case 1: playerModel = "-.☺.-"; break;
+                case 2: playerModel = "-.☺.="; break;
+                case 3: playerModel = "=.☺.="; break;
+                case 4: playerModel = "-.☺.=="; break;
+                case 5: playerModel = "==.☺.=="; break;
+                case 6: playerModel = "==.☺.=="; break;
+            }
         }
     }
 }
