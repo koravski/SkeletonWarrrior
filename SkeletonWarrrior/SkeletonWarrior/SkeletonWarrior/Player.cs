@@ -331,6 +331,22 @@ namespace SkeletonWarrior
                     playerColor = ConsoleColor.Yellow; break;
                 default: 
                     playerColor = ConsoleColor.DarkMagenta; break;
+            }
+
+            SetPlayerModelOnLevelUP();
+        }
+
+        public void SetPlayerModelOnLevelUP()
+        {
+            switch (playerLevel)
+            {
+                case 0: playerModel = "-.☺.-"; break;
+                case 1: playerModel = "-.☺.-"; break;
+                case 2: playerModel = "-.☺.="; break;
+                case 3: playerModel = "=.☺.="; break;
+                case 4: playerModel = "-.☺.=="; break;
+                case 5: playerModel = "==.☺.=="; break;
+                case 6: playerModel = "==.☺.=="; break;
 
             }
         }
