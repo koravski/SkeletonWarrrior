@@ -1,4 +1,2 @@
-pesho
-gosho
-petkan
-dragan
+DDD		3
+Ds		2

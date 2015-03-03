@@ -61,8 +61,6 @@ namespace SkeletonWarrior
                 Console.ForegroundColor = Player.playerColor;
                 Console.Write(player.PlayerModel);
                 Console.ForegroundColor = foreground;
-                //player.MoveAndShoot();
-                //player.ShootAndMoveBullets();
                 player.PrintPlayerStats();
                 int determiner = enemySpawner.Next(1, 250);
 
@@ -119,6 +117,7 @@ namespace SkeletonWarrior
                     Console.Write("YOU LOST.");
                     Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 8);
                     Console.Write("SCORE: " + Player.Score);
+                    SetScoreToFailedDatabase(player);
                     bool gameQuit = false;
                     while (true)
                     {
@@ -145,7 +144,6 @@ namespace SkeletonWarrior
                         break;
                     }
                     bullet.PrintBullets();
-                    //bullet.WriteBulletOnScreen();
 
                     if ((bullet.Friendly == false) &&
                         (player.X - 3 <= bullet.X &&
@@ -153,7 +151,6 @@ namespace SkeletonWarrior
                         (player.Y <= bullet.Y &&
                          player.Y >= bullet.Y))
                     {
-                        //int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
                         GameLogic.ShotBullets.Remove(bullet);
                         player.Health--;
                         break;
@@ -167,9 +164,7 @@ namespace SkeletonWarrior
                                 bullet.X == enemyBullet.X &&
                                 bullet.Y == enemyBullet.Y)
                             {
-                                //int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
                                 GameLogic.ShotBullets.Remove(bullet);
-                                //indexOfBullet = GameLogic.ShotBullets.IndexOf(enemyBullet);
                                 GameLogic.ShotBullets.Remove(enemyBullet);
                                 removed = true;
                                 break;
@@ -190,6 +185,25 @@ namespace SkeletonWarrior
                 //Enemy.GetBoss(Enemy.GetBossFile);
                 Thread.Sleep(20);
                 Console.Clear();
+            }
+        }
+ 
+        private static void SetScoreToFailedDatabase(Player player)
+        {
+            try
+            {
+                using (StreamWriter sw = new StreamWriter(@"..\..\failed.txt", true))
+                {
+                    sw.WriteLine(characterName + "\t\t" + Player.Score);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                Console.WriteLine("Can't load failed database to store record!");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                Console.WriteLine("Can't open directory to find failed database!");
             }
         }
 
@@ -329,6 +343,7 @@ ___----             ___------              \                 ___________        
                 using (var reader = new StreamReader(@"..\..\failed.txt"))
                 {
                     int failedCount = 1;
+                    Console.WriteLine();
                     while ((line = reader.ReadLine()) != null)
                     {
                         Console.SetCursorPosition(Console.WindowWidth / 6, Console.WindowHeight / 5 + counter);
@@ -349,12 +364,10 @@ ___----             ___------              \                 ___________        
             string line1;
             Console.SetCursorPosition(Console.WindowWidth / 2, Console.WindowHeight / 6);
             Console.WriteLine("Successful Attempts:");
-
             try
             {
                 using (var reader1 = new StreamReader(@"..\..\successful.txt"))
                 {
-
                     int successCount = 1;
                     while ((line1 = reader1.ReadLine()) != null)
                     {
