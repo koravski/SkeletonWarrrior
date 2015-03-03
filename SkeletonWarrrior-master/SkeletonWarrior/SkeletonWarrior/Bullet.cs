@@ -49,12 +49,18 @@ namespace SkeletonWarrior
                 if ( (this.x == enemy.X - 1) &&
                      (this.y == enemy.Y) )
                 {
-                    int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
-                    GameLogic.ShotBullets.RemoveAt(indexOfBullet);
-                    GameLogic.EnemyList.RemoveAt(GameLogic.EnemyList.IndexOf(enemy));
-                    player.Collisions++;
-                    Player.Score++;
-                    return true;
+                    GameLogic.ShotBullets.Remove(this);
+                    if (enemy.Health > 0)
+                    {
+                        enemy.Health -= player.AttackPower;
+                    }
+                    else
+                    {
+                        GameLogic.EnemyList.Remove(enemy);
+                        player.Collisions++;
+                        Player.Score++;
+                        return true;
+                    }
                 }
             }
 

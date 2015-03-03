@@ -38,8 +38,8 @@ namespace SkeletonWarrior
         private void PickEnemyCoords()
         {
             Random coordsPicker = new Random();
-            this.x = coordsPicker.Next(1, Console.WindowWidth - 1);
-            this.y = coordsPicker.Next(1, Console.WindowHeight - 1);
+            this.x = coordsPicker.Next(3, Console.WindowWidth - 3);
+            this.y = coordsPicker.Next(3, Console.WindowHeight - 3);
         }
 
         public int X

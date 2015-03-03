@@ -4,3 +4,7 @@ Steff		18
 asd		4
 kobalt		9
 niki		31
+f		2
+dsa		0
+x		18
+dsaasd		3

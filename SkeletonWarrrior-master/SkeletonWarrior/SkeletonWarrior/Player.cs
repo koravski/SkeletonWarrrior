@@ -271,7 +271,31 @@ namespace SkeletonWarrior
                     default:
                         break;
                 }
-                
+
+                Random statsIncrease = new Random();
+                int stat = statsIncrease.Next(1, 5);
+
+                foreach (var enemy in GameLogic.EnemyList.ToList())
+                {
+                    switch (stat)
+                    {
+                        case 1:
+                            enemy.MovementSpeed++;
+                            break;
+                        case 2:
+                            enemy.AttackPower++;
+                            break;
+                        case 3:
+                            enemy.FiringSpeed++;
+                            break;
+                        case 4:
+                            enemy.Health++;
+                            break;
+                        default:
+                            break;
+                    }
+                }
+
                 //Runs when the player levels up.
                 this.SetPlayerColorOnLevelUp();
             }
@@ -283,7 +307,7 @@ namespace SkeletonWarrior
 
         public void SetPlayerColorOnLevelUp()
         {
-            Thread.Sleep(20 - movementSpeed);
+            //Thread.Sleep(20 - movementSpeed);
             //Runs when the player levels up and makes him darker.
             switch (playerLevel)
             {

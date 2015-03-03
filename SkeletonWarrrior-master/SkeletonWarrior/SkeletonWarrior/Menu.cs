@@ -106,19 +106,19 @@ namespace SkeletonWarrior
 
                 if (determiner == 1)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '0'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '0'));
                 }
                 else if (determiner == 2)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '*'));
-                }
-                else if (determiner == 3)
-                {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '='));
-                }
-                else if (determiner == 4)
-                {
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 5, '&'));
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '*'));
+                }                                      
+                else if (determiner == 3)              
+                {                                      
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '='));
+                }                                      
+                else if (determiner == 4)              
+                {                                      
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&'));
                 }
 
                 if (GameLogic.EnemyList.Count > 0)
@@ -145,11 +145,11 @@ namespace SkeletonWarrior
                         enemy.Y == player.Y)
                     {
                         GameLogic.EnemyList.Remove(enemy);
-                        player.Health--;
+                        player.Health -= enemy.AttackPower;
                         break;
                     }
                 }
-                if (player.Health == 0)
+                if (player.Health <= 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Clear();
@@ -192,11 +192,11 @@ namespace SkeletonWarrior
                          player.Y >= bullet.Y))
                     {
                         GameLogic.ShotBullets.Remove(bullet);
-                        player.Health--;
+                        player.Health -= GameLogic.EnemyList[0].AttackPower;
                         break;
                     }
                     bool removed = false;
-                    if (bullet.Friendly == true)
+                    if (bullet.Friendly == true) // remove two bullets when they collide
                     {
                         foreach (var enemyBullet in GameLogic.ShotBullets.ToList())
                         {
@@ -218,7 +218,7 @@ namespace SkeletonWarrior
                     
                 }
 
-                if (player.Collisions == 5)
+                if (player.Collisions == 5 + Player.PlayerLevel)
                 {
                     player.UpdateStatsOnLevelUp();
                 }
