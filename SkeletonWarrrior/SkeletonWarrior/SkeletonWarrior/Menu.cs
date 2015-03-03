@@ -71,19 +71,19 @@ namespace SkeletonWarrior
 
                 if (determiner == 1)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '0')); //normal
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '0')); //normal
                 }
                 else if (determiner == 2)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '*')); // shoots
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '*')); // shoots
                 }                                      
                 else if (determiner == 3)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, '=')); // hits harder
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 2, '=')); // hits harder
                 }                                      
                 else if (determiner == 4)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '&')); //tank
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&')); //tank
                 }
 
                 if (GameLogic.EnemyList.Count > 0)
@@ -193,11 +193,11 @@ namespace SkeletonWarrior
                     }
                     else if (Player.PlayerLevel % 2 == 0)
                     {
-                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
                     }
                     else
                     {
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
                     }
                 }
                 //Enemy.GetBoss();

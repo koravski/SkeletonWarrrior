@@ -10,3 +10,6 @@ x		18
 dsaasd		3
 Steff		2
 Ivvaaaa		0
+dsa		1
+dwad		6
+dsa		0
