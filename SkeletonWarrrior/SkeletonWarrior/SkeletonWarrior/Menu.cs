@@ -58,7 +58,6 @@ namespace SkeletonWarrior
 
             Thread shootThread = new Thread(player.ShootAndMoveBullets);
             shootThread.Start();
-            //ResetGame(); //TODO: FIX THIS
             while (playing)
             {
                 player.CheckWallCollision();
@@ -72,19 +71,19 @@ namespace SkeletonWarrior
 
                 if (determiner == 1)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '0')); //normal
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '0')); //normal
                 }
                 else if (determiner == 2)
                 {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '*')); // shoots
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '*')); // shoots
                 }                                      
                 else if (determiner == 3)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 2, '=')); // hits harder
+                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 1, '=')); // hits harder
                 }                                      
                 else if (determiner == 4)              
                 {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&')); //tank
+                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 1, '&')); //tank
                 }
 
                 if (GameLogic.EnemyList.Count > 0)
@@ -136,7 +135,7 @@ namespace SkeletonWarrior
                     }
                     if (gameQuit)
                     {
-                        break;
+                        ResetGame();
                     }
                 }
                 if (moving)
@@ -187,6 +186,19 @@ namespace SkeletonWarrior
                 if (player.Collisions == 5 + Player.PlayerLevel)
                 {
                     player.UpdateStatsOnLevelUp();
+
+                    if (Player.PlayerLevel % 3 == 0)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                    }
+                    else if (Player.PlayerLevel % 2 == 0)
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    }
+                    else
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkGray;
+                    }
                 }
                 //Enemy.GetBoss();
                 Thread.Sleep(20);
@@ -219,11 +231,9 @@ namespace SkeletonWarrior
 
         private static void ResetGame()
         {
-            GameLogic.EnemyList = new System.Collections.Generic.List<Enemy>();
-            GameLogic.ShotBullets = new System.Collections.Generic.List<Bullet>();
-            Player.Score = 0;
-            Player.PlayerLevel = 1;
-            Enemy.EnemyLevel = 1;
+            // Starts a new instance of the program itself
+            System.Diagnostics.Process.Start("SkeletonWarrior.exe");
+            Environment.Exit(0);
         }
 
         /// <summary>

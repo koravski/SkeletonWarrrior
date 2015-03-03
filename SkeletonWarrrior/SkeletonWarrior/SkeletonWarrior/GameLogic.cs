@@ -28,20 +28,9 @@ namespace SkeletonWarrior
             set { this.playerColor = value; }
         }
 
-        public void MapLevelUp(int playerColor)
-        {
-            //Runs when the background color changes.
-            SetBackgroundColorOnLevelChange();
-        }
-        
-
         public static void SetCursorPosition(int x, int y)
         {
             Console.SetCursorPosition(Console.BufferWidth - 120 + x, Console.BufferHeight - 40 + y);
-        }
-        public void SetBackgroundColorOnLevelChange()
-        {
-            //Runs when background has to change and makes it darker.
         }
     }
 }

@@ -312,23 +312,23 @@ namespace SkeletonWarrior
             switch (playerLevel)
             {
                 case 0: 
-                    playerColor = ConsoleColor.White; break;
+                    playerColor = ConsoleColor.Cyan; break;
                 case 1:
                 case 2: 
                     playerColor = ConsoleColor.Blue; break;
                 case 3: 
-                    playerColor = ConsoleColor.Red; break;
+                    playerColor = ConsoleColor.DarkBlue; break;
                 case 4: 
-                    playerColor = ConsoleColor.Green; break;
+                    playerColor = ConsoleColor.Cyan; break;
                 case 5:
                 case 6:
                 case 7:
                 case 8:
-                    playerColor = ConsoleColor.DarkCyan; break;
+                    playerColor = ConsoleColor.Blue; break;
                 case 9:
                 case 10:
                 case 11:
-                    playerColor = ConsoleColor.Yellow; break;
+                    playerColor = ConsoleColor.DarkBlue; break;
                 default: 
                     playerColor = ConsoleColor.DarkMagenta; break;
             }

@@ -24,6 +24,7 @@ namespace SkeletonWarrior
         private static int enemyLevel = 1;
         private int health;
         private char enemyType;
+        private static ConsoleColor enemyColor = ConsoleColor.Yellow;
         //public ConsoleColor enemyColor = ConsoleColor.Red;
 
         public Enemy(int movementSpeed, int attackPower, int firingSpeed, int health, char enemyType)
@@ -87,25 +88,22 @@ namespace SkeletonWarrior
             get { return bossFile; }
         }
         
-        public ConsoleColor SetEnemyColorOnLevelUp(ConsoleColor playerColor)
+        public static ConsoleColor SetEnemyColorOnLevelUp()
         {
-            ConsoleColor enemyColor = ConsoleColor.Red;
-            switch (playerColor)
+            switch (Player.playerColor)
             {
-                case ConsoleColor.White: enemyColor = ConsoleColor.Magenta; return enemyColor;
-                case ConsoleColor.Blue: enemyColor = ConsoleColor.Yellow; return enemyColor;
-                case ConsoleColor.Red: enemyColor = ConsoleColor.Green; return enemyColor;
-                case ConsoleColor.Green: enemyColor = ConsoleColor.Cyan; return enemyColor;
-                case ConsoleColor.DarkCyan: enemyColor = ConsoleColor.White; return enemyColor;
-                case ConsoleColor.Yellow: enemyColor = ConsoleColor.DarkCyan; return enemyColor;
-                case ConsoleColor.DarkMagenta: enemyColor = ConsoleColor.Blue; return enemyColor;
+                case ConsoleColor.DarkBlue: enemyColor = ConsoleColor.Red; break;
+                case ConsoleColor.Blue: enemyColor = ConsoleColor.DarkRed; break;
+                case ConsoleColor.Cyan: enemyColor = ConsoleColor.DarkYellow; break;
+                case ConsoleColor.DarkMagenta: enemyColor = ConsoleColor.Blue; break;
                 default: return enemyColor;
             }
+            return enemyColor;
         }
         public void WriteEnemyOnScreen()
         {
             ConsoleColor foreground = Console.BackgroundColor;
-            Console.ForegroundColor = SetEnemyColorOnLevelUp(Player.playerColor);
+            Console.ForegroundColor = SetEnemyColorOnLevelUp();
             Console.SetCursorPosition(this.x, this.y);
             Console.Write(EnemyType);
             Console.ForegroundColor = foreground;
