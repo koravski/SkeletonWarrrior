@@ -439,11 +439,6 @@ ___----             ___------              \                 ___________        
             Thread skull = new Thread(Music);
             skull.Start();
 
-<<<<<<< HEAD
-            //Console.Title = "Boldog Karácsonyt!";
-=======
-            Console.Title = "Boldog Karácsonyt!";
->>>>>>> origin/master
             //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 
             StreamReader szarvas = new StreamReader(@"..\..\skull.txt");
