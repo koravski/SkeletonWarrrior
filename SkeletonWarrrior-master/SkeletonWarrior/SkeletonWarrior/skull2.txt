@@ -15,5 +15,5 @@ ___----             ___------              \                 ___________        
  Ivan Donchev                     |
  Vasil Todorov                    |  \_((_(_)|/(_)
  Krasimir Georgiev                 \             (
- Stefan  Dimitrov                   \_____________)");
+ Stefan  Dimitrov                   \_____________)
  Kaloian Koravski

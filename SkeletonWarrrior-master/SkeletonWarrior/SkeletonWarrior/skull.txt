@@ -14,6 +14,6 @@ ___----             ___------              \                 ___________        
  Pavlina Dragneva                 |  | ((_(_)| )_)           \__/\  /  (____  /__|   |__|  |__|\____/|__|
  Ivan Donchev                     |  \_((_(_)|/(_)
  Vasil Todorov                    \             (
- Krasimir Georgiev                 \_____________)");
+ Krasimir Georgiev                 \_____________)
  Stefan  Dimitrov 
  Kaloian Koravski

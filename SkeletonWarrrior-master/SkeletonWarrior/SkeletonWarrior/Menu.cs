@@ -437,7 +437,7 @@ ___----             ___------              \                 ___________        
             skull.Start();
 
             Console.Title = "Boldog Karácsonyt!";
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 
             StreamReader szarvas = new StreamReader(@"..\..\skull.txt");
             string szarvasstring = szarvas.ReadToEnd();
