@@ -49,7 +49,7 @@ namespace SkeletonWarrior
         private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
 
         private static int currentSelection = 0;
-        private static string characterName;
+        private static string characterName = "";
         private static bool playing = true;
         private static Random enemySpawner = new Random();
         private static readonly string selector = ">";
@@ -74,10 +74,13 @@ namespace SkeletonWarrior
         }
         public static void StartGame()
         {
-            Console.Clear();
-            Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
-            Console.Write("Enter character name: ");
-            characterName = Console.ReadLine();
+            while (characterName == "")
+            {
+                Console.Clear();
+                Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
+                Console.Write("Enter character name: ");
+                characterName = Console.ReadLine();   
+            }
 
             Console.Clear();
 
@@ -436,8 +439,8 @@ ___----             ___------              \                 ___________        
             Thread skull = new Thread(Music);
             skull.Start();
 
-            Console.Title = "Boldog Karácsonyt!";
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            //Console.Title = "Boldog Karácsonyt!";
+            //Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 
             StreamReader szarvas = new StreamReader(@"..\..\skull.txt");
             string szarvasstring = szarvas.ReadToEnd();
