@@ -9,19 +9,24 @@ namespace SkeletonWarrior
         private int y;
         private int direction;
         private char bulletModel = '@';
+        private bool friendly;
         //directions:
         // 1 - up
         // 2 - down
         // 3 - left
         // 4 - right
 
-        public Bullet(int x, int y, int direction)
+        public Bullet(int x, int y, int direction, bool friendly)
         {
             this.x = x;
             this.y = y;
             this.direction = direction;
+            this.friendly = friendly;
         }
-
+        public bool Friendly
+        {
+            get { return friendly; }
+        }
         public int X
         {
             get { return this.x; }
@@ -51,17 +56,18 @@ namespace SkeletonWarrior
                     return true;
                 }
             }
+
             return false;
             
         }
 
         public void WriteBulletOnScreen()
         {
-            ConsoleColor background = Console.BackgroundColor;
-            Console.ForegroundColor = Player.playerColor;
+            ConsoleColor foreground = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(this.x + 1, this.y);
             Console.Write(bulletModel);
-            Console.ForegroundColor = background;
+            Console.ForegroundColor = foreground;
         }
         public void UpdateBullet()
         {

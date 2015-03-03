@@ -114,25 +114,25 @@ namespace SkeletonWarrior
                         case ConsoleKey.UpArrow:
                             if (y > 0)
                             {
-                                GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1));
+                                GameLogic.ShotBullets.Add(new Bullet(x, y - 1, 1, true));
                             }
                             break;
                         case ConsoleKey.DownArrow:
                             if (y < Console.WindowHeight - 1)
                             {
-                                GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2));
+                                GameLogic.ShotBullets.Add(new Bullet(x, y + 1, 2, true));
                             }
                             break;
                         case ConsoleKey.RightArrow:
                             if (x < Console.WindowWidth - 4)
                             {
-                                GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4));
+                                GameLogic.ShotBullets.Add(new Bullet(x + 3, y, 4, true));
                             }
                             break;
                         case ConsoleKey.LeftArrow:
                             if (x > 2)
                             {
-                                GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3));
+                                GameLogic.ShotBullets.Add(new Bullet(x - 4, y, 3, true));
                             }
                             break;
                     }
@@ -150,6 +150,14 @@ namespace SkeletonWarrior
                 element.WriteBulletOnScreen();
                 element.UpdateBullet();
             }
+            //if (firingSpeed <= 10)
+            //{
+            //    Thread.Sleep(200 - 18 * firingSpeed);
+            //}
+            //else
+            //{
+            //    Thread.Sleep(20);
+            //}
         }
         
         private void CheckWallCollision()
@@ -247,7 +255,7 @@ namespace SkeletonWarrior
                         isMenuShow = false;
                         break;   // Do something 
                     case ConsoleKey.D4:
-                        player.health++;
+                        player.health += 10;
                         player.playerLevel++;
                         player.Collisions = 0;
                         isMenuShow = false;
@@ -259,7 +267,6 @@ namespace SkeletonWarrior
                 
                 //Runs when the player levels up.
                 player.SetPlayerColorOnLevelUp();
-                
             }
         }
         public static void SetCursorPosition(int x, int y)
@@ -282,7 +289,6 @@ namespace SkeletonWarrior
                 case 6: playerColor = ConsoleColor.DarkMagenta; break;
 
             }
-            SetPlayerModelOnLevelUP();
         }
 
         public void PrintPlayerStats()
@@ -300,20 +306,6 @@ namespace SkeletonWarrior
             Console.SetCursorPosition(Console.WindowWidth - 22, 6);
             Console.Write("Lives - " + health);
             Console.ForegroundColor = foreground;
-        }
-        public void SetPlayerModelOnLevelUP()
-        {
-            switch (playerLevel)
-            {
-                case 0: playerModel = "-.☺.-"; break;
-                case 1: playerModel = "-.☺.-"; break;
-                case 2: playerModel = "-.☺.="; break;
-                case 3: playerModel = "=.☺.="; break;
-                case 4: playerModel = "-.☺.=="; break;
-                case 5: playerModel = "==.☺.=="; break;
-                case 6: playerModel = "==.☺.=="; break;
-
-            }
         }
     }
 }

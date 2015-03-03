@@ -139,25 +139,25 @@ namespace SkeletonWarrior
                 player.X + 5 >= this.x &&
                 player.Y < this.y)
             {
-                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y - 1, 1));
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y - 1, 1,false));
             }
             else if (player.X - 3 <= this.x &&
                      player.X + 5 >= this.x &&
                      player.Y > this.y)
             {
-                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y + 1, 2));
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 1, this.y + 1, 2, false));
             }
             else if (player.Y - 1 <= this.y &&
                      player.Y + 1 >= this.y && 
                      player.X < this.x)
             {
-                GameLogic.ShotBullets.Add(new Bullet(this.x - 2, this.y, 3));
+                GameLogic.ShotBullets.Add(new Bullet(this.x - 2, this.y, 3, false));
             }
             else if (player.Y - 1 <= this.y &&
                      player.Y + 1 >= this.y &&
                      player.X > this.x)
             {
-                GameLogic.ShotBullets.Add(new Bullet(this.x, this.y, 4));
+                GameLogic.ShotBullets.Add(new Bullet(this.x, this.y, 4, false));
             }
         }
 

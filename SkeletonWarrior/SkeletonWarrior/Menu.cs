@@ -44,10 +44,10 @@ namespace SkeletonWarrior
             Console.Clear();
 
             Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 1, 20);
-            player.PlayerModel = "-.☺.-";
+            player.PlayerModel = "=-.☺.-=";
 
-            Thread th = new Thread(player.MoveAndShoot);
-            th.Start();
+            Thread moveThread = new Thread(player.MoveAndShoot);
+            moveThread.Start();
 
             while (playing)
             {
@@ -110,8 +110,10 @@ namespace SkeletonWarrior
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.Clear();
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 5, Console.WindowHeight / 2 - 5);
+                    Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 10);
                     Console.Write("YOU LOST.");
+                    Console.ReadKey();
+                    break;
                 }
                 if (moving)
                 {
@@ -123,6 +125,41 @@ namespace SkeletonWarrior
                     {
                         break;
                     }
+
+                    if ((bullet.Friendly == false) &&
+                        (player.X - 3 <= bullet.X &&
+                        player.X + 5 >= bullet.X) &&
+                        (player.Y <= bullet.Y &&
+                         player.Y >= bullet.Y))
+                    {
+                        int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
+                        GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                        player.Health--;
+                        break;
+                    }
+                    bool removed = false;
+                    if (bullet.Friendly == true)
+                    {
+                        foreach (var enemyBullet in GameLogic.ShotBullets)
+                        {
+                            if ((enemyBullet.Friendly == false) &&
+                                bullet.X == enemyBullet.X &&
+                                bullet.Y == enemyBullet.Y)
+                            {
+                                int indexOfBullet = GameLogic.ShotBullets.IndexOf(bullet);
+                                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                                indexOfBullet = GameLogic.ShotBullets.IndexOf(enemyBullet);
+                                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                                removed = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (removed)
+                    {
+                        break;
+                    }
+                    
                 }
 
                 if (player.Collisions == 5)
