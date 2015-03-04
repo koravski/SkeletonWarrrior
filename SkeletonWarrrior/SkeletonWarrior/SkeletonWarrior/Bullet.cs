@@ -110,8 +110,7 @@ namespace SkeletonWarrior
 
             if (forRemoval)
             {
-                int indexOfBullet = GameLogic.ShotBullets.IndexOf(this);
-                GameLogic.ShotBullets.RemoveAt(indexOfBullet);
+                GameLogic.ShotBullets.Remove(this);
             }
             else
             {

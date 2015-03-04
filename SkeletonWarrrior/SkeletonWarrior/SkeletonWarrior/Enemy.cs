@@ -161,7 +161,7 @@ namespace SkeletonWarrior
 
             for (int i = 0; i < bossMatrix.GetLength(0); i++)
             {
-                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 16 + i);
+                GameLogic.SetCursorPosition(Console.WindowWidth / 2 - 12, Console.WindowHeight / 16 + i);
                 for (int j = 0; j < bossMatrix.GetLength(1); j++)
                 {
                     Console.Write(bossMatrix[i, j]);

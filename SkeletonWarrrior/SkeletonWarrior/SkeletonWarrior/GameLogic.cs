@@ -17,6 +17,7 @@ namespace SkeletonWarrior
         private static int mover = 0;
         private static readonly string failedAttemptsPath = "failed.txt";
         private static readonly string successAttemptsPath = "successful.txt";
+        private static bool bossTime = true;
 
         private ConsoleColor playerColor = ConsoleColor.Cyan;
 
@@ -178,9 +179,17 @@ namespace SkeletonWarrior
                     }
                 }
 
-                if (Player.PlayerLevel == 3)
+                if (Player.PlayerLevel >= 3)
                 {
                     Enemy.GetBoss();
+                    if (bossTime)
+                    {
+                        for (int i = 0; i < GameLogic.EnemyList.Count; i++)
+                        {
+                            EnemyList[i].Health += 15;
+                        }
+                        bossTime = false;
+                    }
                 }
                 if (moving)
                 {
