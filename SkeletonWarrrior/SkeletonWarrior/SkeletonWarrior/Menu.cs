@@ -11,22 +11,12 @@ namespace SkeletonWarrior
         /// <summary>
         /// Main menu
         /// </summary>
-        private static readonly string[] menu = { "Start New Game", "Change Difficulty", "Leaderboards", "Credits", "Exit Game" };
+        private static readonly string[] menu = { "Start New Game", "Leaderboards", "Credits", "Exit Game" };
 
+        private static readonly string selector = ">";
         private static int currentSelection = 0;
         private static string characterName = "";
-        private static bool playing = true;
-        private static Random enemySpawner = new Random();
-        private static readonly string selector = ">";
-        private static int mover = 0;
-        private static readonly string failedAttemptsPath = "failed.txt";
-        private static readonly string successAttemptsPath = "successful.txt";
-
-        public static int Mover
-        {
-            get { return mover; }
-            set { mover = value; }
-        }
+        
         public static void Show()
         {
             ShowLogo();
@@ -37,205 +27,24 @@ namespace SkeletonWarrior
                 Thread.Sleep(75);
             }
         }
-
-        public static void StartGame()
+        public static string CharacterName
+        {
+            get { return characterName; }
+        }
+        public static void Init()
         {
             while (characterName == "")
             {
                 Console.Clear();
                 Console.SetCursorPosition(Console.WindowWidth / 2 - 25, Console.WindowHeight / 2);
                 Console.Write("Enter character name: ");
-                characterName = Console.ReadLine();   
+                characterName = Console.ReadLine();
             }
 
             Console.Clear();
-
-            Player player = new Player(Console.WindowWidth / 2, Console.WindowHeight / 2, 1, 1, 1, 20);
-            player.PlayerModel = "-.☺.-";
-            Player.PlayerLevel = 1;
-            Thread moveThread = new Thread(player.MoveAndShoot);
-            moveThread.Start();
-
-            Thread shootThread = new Thread(player.ShootAndMoveBullets);
-            shootThread.Start();
-            while (playing)
-            {
-                player.CheckWallCollision();
-                Console.SetCursorPosition(player.X - player.PlayerModel.Length / 2 + 1, player.Y);
-                ConsoleColor foreground = Console.ForegroundColor;
-                Console.ForegroundColor = Player.playerColor;
-                Console.Write(player.PlayerModel);
-                Console.ForegroundColor = foreground;
-                player.PrintPlayerStats();
-                int determiner = enemySpawner.Next(1, 250);
-
-                if (determiner == 1)
-                {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '0')); //normal
-                }
-                else if (determiner == 2)
-                {
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 2, '*')); // shoots
-                }                                      
-                else if (determiner == 3)              
-                {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 2, 2, 2, '=')); // hits harder
-                }                                      
-                else if (determiner == 4)              
-                {                                      
-                    GameLogic.EnemyList.Add(new Enemy(1, 1, 2, 5, '&')); //tank
-                }
-
-                if (GameLogic.EnemyList.Count > 0)
-                {
-                    mover++;
-                }
-                bool moving = false;
-                foreach (var enemy in GameLogic.EnemyList)
-                {
-                    enemy.WriteEnemyOnScreen();
-                    if (mover == 11)
-                    {
-                        if (enemy.EnemyType != '*')
-                        {
-                            enemy.Move(player);
-                        }
-                        else
-                        {
-                            enemy.Shoot(player);
-                        }
-                        moving = true;
-                    }
-                    if (enemy.X == player.X && 
-                        enemy.Y == player.Y)
-                    {
-                        GameLogic.EnemyList.Remove(enemy);
-                        player.Health -= enemy.AttackPower;
-                        break;
-                    }
-                }
-                if (player.Health <= 0)
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.Clear();
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 10);
-                    Console.Write("YOU LOST.");
-                    Console.SetCursorPosition(Console.WindowWidth / 2 - 4, Console.WindowHeight / 2 - 8);
-                    Console.Write("SCORE: " + Player.Score);
-                    SetScoreToFailedDatabase(player);
-                    bool gameQuit = false;
-                    while (true)
-                    {
-                        ConsoleKeyInfo key = Console.ReadKey(true);
-                        if (key.Key == ConsoleKey.Enter)
-                        {
-                            gameQuit = true;
-                            break;
-                        }
-                    }
-                    if (gameQuit)
-                    {
-                        ResetGame();
-                    }
-                }
-                if (moving)
-                {
-                    mover = 0;
-                }
-                foreach (var bullet in GameLogic.ShotBullets.ToList())
-                {
-                    if (bullet.BulletCollisionCheck(player))
-                    {
-                        break;
-                    }
-                    bullet.PrintBullets();
-
-                    if ((bullet.Friendly == false) &&
-                        (player.X - 3 <= bullet.X &&
-                        player.X + 5 >= bullet.X) &&
-                        (player.Y <= bullet.Y &&
-                         player.Y >= bullet.Y))
-                    {
-                        GameLogic.ShotBullets.Remove(bullet);
-                        player.Health -= GameLogic.EnemyList[0].AttackPower;
-                        break;
-                    }
-                    bool removed = false;
-                    if (bullet.Friendly == true) // remove two bullets when they collide
-                    {
-                        foreach (var enemyBullet in GameLogic.ShotBullets.ToList())
-                        {
-                            if ((enemyBullet.Friendly == false) &&
-                                bullet.X == enemyBullet.X &&
-                                bullet.Y == enemyBullet.Y)
-                            {
-                                GameLogic.ShotBullets.Remove(bullet);
-                                GameLogic.ShotBullets.Remove(enemyBullet);
-                                removed = true;
-                                break;
-                            }
-                        }
-                    }
-                    if (removed)
-                    {
-                        break;
-                    }
-                    
-                }
-
-                if (player.Collisions == 5 + Player.PlayerLevel)
-                {
-                    player.UpdateStatsOnLevelUp();
-
-                    if (Player.PlayerLevel % 3 == 0)
-                    {
-                        Console.BackgroundColor = ConsoleColor.Black;
-                    }
-                    else if (Player.PlayerLevel % 2 == 0)
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkGray;
-                    }
-                    else
-                    {
-                        Console.BackgroundColor = ConsoleColor.DarkYellow;
-                    }
-                }
-                //Enemy.GetBoss();
-                Thread.Sleep(20);
-                Console.Clear();
-            }
+            GameLogic.StartGame();
         }
  
-        /// <summary>
-        /// Method storing failed attempts into database file
-        /// </summary>
-        /// <param name="player"></param>
-        private static void SetScoreToFailedDatabase(Player player)
-        {
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(failedAttemptsPath, true))
-                {
-                    sw.WriteLine(characterName + "\t\t" + Player.Score);
-                }
-            }
-            catch (FileNotFoundException)
-            {
-                Console.WriteLine("Can't load failed database to store record!");
-            }
-            catch (DirectoryNotFoundException)
-            {
-                Console.WriteLine("Can't open directory to find failed database!");
-            }
-        }
-
-        private static void ResetGame()
-        {
-            // Starts a new instance of the program itself
-            System.Diagnostics.Process.Start("SkeletonWarrior.exe");
-            Environment.Exit(0);
-        }
-
         /// <summary>
         /// Show main menu
         /// </summary>
@@ -274,18 +83,15 @@ namespace SkeletonWarrior
             switch (currentSelection)
             {
                 case 0:
-                    StartGame();
+                    Init();
                     break;
                 case 1:
-                    ChangeDifficultyLevel();
-                    break;
-                case 2:
                     ShowLeaderboards();
                     break;
-                case 3:
+                case 2:
                     ShowCredits();
                     break;
-                case 4:
+                case 3:
                     Environment.Exit(0);
                     break;
             }
@@ -340,7 +146,7 @@ namespace SkeletonWarrior
             Console.WriteLine("Failed Attempts:");
             try
             {
-                using (var reader = new StreamReader(failedAttemptsPath))
+                using (var reader = new StreamReader(GameLogic.FailedAttemptsPath))
                 {
                     int failedCount = 1;
                     Console.WriteLine();
@@ -366,7 +172,7 @@ namespace SkeletonWarrior
             Console.WriteLine("Successful Attempts:");
             try
             {
-                using (var reader1 = new StreamReader(successAttemptsPath))
+                using (var reader1 = new StreamReader(GameLogic.SuccessAttemptsPath))
                 {
                     int successCount = 1;
                     while ((line1 = reader1.ReadLine()) != null)
