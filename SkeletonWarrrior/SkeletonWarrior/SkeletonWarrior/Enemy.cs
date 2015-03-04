@@ -111,11 +111,11 @@ namespace SkeletonWarrior
 
         public void Move(Player player)
         {
-            if (this.X > player.X)
+            if (this.X > player.X + 1)
             {
                 this.X--;
             }
-            else if (this.X < player.X)
+            else if (this.X < player.X + 1)
             {
                 this.X++;
             }
