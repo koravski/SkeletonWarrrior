@@ -190,6 +190,7 @@ namespace SkeletonWarrior
         public void UpdateStatsOnLevelUp()
         {
             bool isMenuShow = true;
+            Random statsIncrease = new Random();
             while (isMenuShow)
             {
                 ConsoleColor foreground = Console.ForegroundColor;
@@ -272,7 +273,6 @@ namespace SkeletonWarrior
                         break;
                 }
 
-                Random statsIncrease = new Random();
                 int stat = statsIncrease.Next(1, 5);
 
                 foreach (var enemy in GameLogic.EnemyList.ToList())
