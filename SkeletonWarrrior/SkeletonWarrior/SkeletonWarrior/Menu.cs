@@ -199,6 +199,7 @@ namespace SkeletonWarrior
         /// </summary>
         private static void ShowCredits()
         {
+            Console.Clear();
             Thread skull = new Thread(Music);
             skull.Start();
 
