@@ -177,6 +177,11 @@ namespace SkeletonWarrior
                         ResetGame();
                     }
                 }
+
+                if (Player.PlayerLevel == 3)
+                {
+                    Enemy.GetBoss();
+                }
                 if (moving)
                 {
                     mover = 0;

@@ -82,11 +82,6 @@ namespace SkeletonWarrior
         {
             get { return enemyType; }
         }
-
-        public static string GetBossFile
-        {
-            get { return bossFile; }
-        }
         
         public static ConsoleColor SetEnemyColorOnLevelUp()
         {
